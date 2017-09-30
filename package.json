@@ -3,10 +3,13 @@
     "express": "^4.16.1",
     "requirejs": "^2.3.5"
   },
-  "name": "SFMC JB Custom",
+  "name": "sfmc-jb-custom",
   "description": "Test bed custom activity",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": "4.1.1"
   }
 }
