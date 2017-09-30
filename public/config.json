@@ -1,0 +1,77 @@
+{
+    "workflowApiVersion": "1.1",
+    "metaData":
+    {
+        "icon": "images/shorttek.png",
+        "iconSmall": "images/shorttek.png",
+        "category": "message"
+    },
+    "type": "REST",
+    "lang":
+    {
+        "en-US":
+        {
+            "name": "Custom Activity (Workflow API v1.1)",
+            "description": "A custom Journey Builder activity using workflow API v1.1 format."
+        }
+    },
+    "arguments":
+    {
+        "execute":
+        {
+            "inArguments": [],
+            "outArguments": [],
+            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_execute",
+            "useJWT": true
+        }
+    },
+    "configurationArguments":
+    {
+        "applicationExtensionKey": "JBINT_Custom_REST_Activity",
+        "save":
+        {
+            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_save"
+        },
+        "publish":
+        {
+            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_publish"
+        },
+        "validate":
+        {
+            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_validate"
+        }
+    },
+    "wizardSteps": [
+    {
+        "label": "Step 1",
+        "key": "step1"
+    }],
+    "userInterfaces":
+    {
+        "configModal":
+        {
+            "height": 200,
+            "width": 300,
+            "fullscreen": true
+        }
+    },
+    "schema":
+    {
+        "arguments":
+        {
+            "execute":
+            {
+                "inArguments": [
+                {
+                    "myInArgument":
+                    {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "in"
+                    }
+                }],
+                "outArguments": []
+            }
+        }
+    }
+}
