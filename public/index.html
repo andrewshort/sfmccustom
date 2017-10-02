@@ -15,7 +15,21 @@
                     'customActivity'
                 ];
                 require(config, dependencies);
+
+                $(document).ready(function() {
+                	$("#myurl").text(window.location.href);
+                });
+                
             })();
         </script>
     </head>
+    <body>
+    	<div>
+    	Nothing to configure, click DONE!
+    	<br />
+    	<hr />
+    	<br />
+    	This URL was succesfully loaded from <span id="myurl"></span>
+    </div>
+    </body>
 </html>

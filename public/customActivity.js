@@ -20,13 +20,6 @@ define([
         if (data) {
             payload = data;
         }
-
-        payload.metaData = {
-            isConfigured: true
-        };
-
-        payload.name = 'Contact Key';
-
         connection.trigger('updateActivity', payload);
     }
 });
