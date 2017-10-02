@@ -1,92 +1,21 @@
-<html>
-
-<head>
-    <script type="text/javascript" src="/js/postmonger.js">
-    </script>
-
-
-</head>
-
-<body>
-    Index Files --
-</body>
-
-</html>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Custom IXN Activity Test</title>
 
-   		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.js"></script>
-    	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/require.js"></script>
         <script type="text/javascript">
             (function() {
                 var config = {
                     baseUrl: ''
                 };
-
                 var dependencies = [
                     'customActivity'
                 ];
-
                 require(config, dependencies);
             })();
         </script>
-
-        <!--Styles-->
-        <style type="text/css">
-            body {
-                padding: 20px;
-                margin: 0;
-            }
-            .step {
-                display: none;
-            }
-            #step1 {
-                display: block;
-            }
-            #payload {
-                position: relative;
-                width: 100%;
-                height: 30em;
-            }
-        </style>
-
     </head>
-    <body>
-        <div id="step1" class="step">
-            Select your SMS message:
-            <select id="select1">
-                <option value="">Select an option</option>
-                <option value="someMessage">Some SMS</option>
-                <option value="anotherMessage">Another SMS</option>
-                <option value="thirdMessage">Third SMS</option>
-                <option value="unknownMessage">Unknown SMS</option>
-            </select>
-            <button id="toggleLastStep">Toggle Last Step</button>
-            <h1>Initial Payload</h1>
-            <pre id="initialPayload">Loading...</pre>
-            <div id="initialPayload"></div>
-            <h1>Data Binding Schema</h1>
-            <pre id="schema">Loading...</pre>
-            <h1>Culture</h1>
-            <pre id="culture">Loading...</pre>
-            <h1>Endpoints</h1>
-            <pre id="endpoints">Loading...</pre>
-            <h1>Defaults</h1>
-            <pre id="interactionDefaults">Loading...</pre>
-        </div>
-        <div id="step2" class="step">
-            You chose the message: <div id="message"></div>
-        </div>
-        <div id="step3" class="step">
-            Here's a second page with some info on it. In this case, the full payload that will be sent to the server when we're done here. Feel free to mess with it, but whatever you do, it must result in valid JSON:<br />
-            <textarea id="payload"></textarea>
-        </div>
-        <div id="step4" class="step">
-            Hey, here's a fourth step, just for you.  Toggle this on or off from step 1.
-        </div>
-    </body>
 </html>
