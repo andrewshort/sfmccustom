@@ -25,6 +25,7 @@ define([
     }
 
     function onClickedNext () {
+        payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);
     }
 });
