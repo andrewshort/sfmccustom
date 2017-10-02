@@ -19,7 +19,12 @@ define([
     function initialize (data) {
         if (data) {
             payload = data;
-        }
-        //connection.trigger('updateActivity', payload);
+        }        
+
+        connection.on('clickedNext', onClickedNext)
+    }
+
+    function onClickedNext () {
+        connection.trigger('updateActivity', payload);
     }
 });
