@@ -20,6 +20,6 @@ define([
         if (data) {
             payload = data;
         }
-        connection.trigger('updateActivity', payload);
+        //connection.trigger('updateActivity', payload);
     }
 });
