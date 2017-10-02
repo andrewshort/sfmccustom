@@ -27,7 +27,7 @@
     },
     "configurationArguments":
     {
-        "applicationExtensionKey": "JBINT_Custom_REST_Activity",
+        "applicationExtensionKey": "mcjbcustom",
         "save":
         {
             "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_save"
