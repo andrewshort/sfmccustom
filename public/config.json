@@ -4,7 +4,20 @@
     {
         "icon": "images/shorttek.png",
         "iconSmall": "images/shorttek.png",
-        "category": "message"
+        "category": "message",
+        "posttestserver" : {
+            "save" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_save",
+            "publish" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_publish",
+            "validate" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_validate",
+            "execute" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_execute"
+        },
+        "mcjbcustom" : {
+            "save" : "https://mcjbcustom.herokuapp.com/api/save",
+            "publish" : "https://mcjbcustom.herokuapp.com/api/publish",
+            "validate" : "https://mcjbcustom.herokuapp.com/api/validate",
+            "execute" : "https://mcjbcustom.herokuapp.com/api/execute"
+        }, 
+        "quickselect" : "posttestserver"
     },
     "type": "Rest",
     "lang":

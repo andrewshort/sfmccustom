@@ -21,6 +21,8 @@ define([
             payload = data;
         }
 
+        $("#urlQuickSelect").val(payload.metaData.quickselect);
+
         if (payload.configurationArguments) {
             $("#saveUrl").val(payload.configurationArguments.save.url);
             $("#publishUrl").val(payload.configurationArguments.publish.url);
@@ -35,7 +37,17 @@ define([
             console.log('no arguments in sfmccustom');
         }
 
-        connection.on('clickedNext', onClickedNext)
+        connection.on('clickedNext', onClickedNext);
+
+        $("#urlQuickSelect").change(function() {
+            var selection = $(this).val();
+
+            $("#saveUrl").val(payload.metaData[selection].save);
+            $("#publishUrl").val(payload.metaData[selection].publish);
+            $("#validateUrl").val(payload.metaData[selection].validate);
+            $("#executeUrl").val(payload.metaData[selection].execute);
+
+        })
     }
 
     function onClickedNext() {
