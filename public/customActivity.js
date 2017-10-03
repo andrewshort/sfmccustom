@@ -24,7 +24,7 @@ define([
         if (payload.configurationArguments) {
             $("#saveUrl").val(payload.configurationArguments.save.url);
             $("#publishUrl").val(payload.configurationArguments.publish.url);
-            $("#validaeUrl").val(payload.configurationArguments.validate.url);
+            $("#validateUrl").val(payload.configurationArguments.validate.url);
         }  else {
             console.log('no configurationArguments in sfmccustom');
         }
