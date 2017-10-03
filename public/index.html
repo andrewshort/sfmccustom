@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Custom IXN Activity Test</title>
 
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/require.js"></script>
-        <script type="text/javascript">
-            (function() {
-                var config = {
-                    baseUrl: ''
-                };
-                var dependencies = [
-                    'customActivity'
-                ];
-                require(config, dependencies);
+<head>
+    <meta charset="utf-8">
+    <title>Custom IXN Activity Test</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-                $(document).ready(function() {
-                	$("#myurl").text(window.location.href);
-                });
-                
-            })();
-        </script>
-    </head>
-    <body>
-    	<div>
-    	Nothing to configure, click DONE!
-    	<br />
-    	<hr />
-    	<br />
-    	This Custom Activity was succesfully loaded from <strong><span id="myurl"></span></strong>
+    <script type="text/javascript">
+    (function() {
+        var config = {
+            baseUrl: ''
+        };
+        var dependencies = [
+            'customActivity'
+        ];
+        require(config, dependencies);
+
+        $(document).ready(function() {
+            $("#myurl").text(window.location.href);
+        });
+
+    })();
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            This Custom Activity was succesfully loaded from <strong><span id="myurl"></span></strong>
+        </div>
+        <br/>
+        <hr/>
+        <br/>
+        <div class="form-group">
+        	<label>Save URL</label>
+        	<input type="text" class="form-control" id="saveUrl" />
+        </div>
+        <div class="form-group">
+        	<label>Publish URL</label>
+        	<input type="text" class="form-control" id="publishUrl" />
+        </div>
+        <div class="form-group">
+        	<label>Validate URL</label>
+        	<input type="text" class="form-control" id="validateUrl" />
+        </div>
+        <div class="form-group">
+        	<label>Execute URL</label>
+        	<input type="text" class="form-control" id="executeUrl" />
+        </div>
     </div>
-    </body>
+</body>
+
 </html>
