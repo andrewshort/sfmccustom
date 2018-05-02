@@ -92,7 +92,7 @@ define([
         console.log("Payload from REST activity")
         console.log(typeof payload);
         console.log(payload);
-        console.log(payload.toJSON());
+        console.log(JSON.stringify(payload, null, 2));
         console.log(payload["id"]);
 
 
