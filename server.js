@@ -35,12 +35,7 @@ router.post('/post', function(req, res) {
 	var uid = req.query.uid;
 	if (!uid) {
 		res.status(400).send({ "message" : "uid is required"})
-	}
-
-	if (req.body.activityObjectID) {
-		activityObjectID = req.body.activityObjectID;
-	} else {
-		activityObjectID = "unknown"
+		return;
 	}
 	
 	if (!results[uid]) { 
