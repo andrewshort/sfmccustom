@@ -34,6 +34,7 @@ define([
             if (include) {
                 $("#includeSave").attr('checked', 'checked');
                 $("#saveStatusCode").removeAttr('disabled');
+                $("#saveStatusCode").val(payload.metaData.save.statusCode);
             }
         }  
 
