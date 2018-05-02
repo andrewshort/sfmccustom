@@ -47,7 +47,7 @@ define([
         if (!payload.metaData) payload.metaData = {};
 
         initForm(payload.metaData.save, "includeSave", "saveStatusCode");
-        initForm(payload.metaData.validate, "includeValidate", "valiateStatusCode");
+        initForm(payload.metaData.validate, "includeValidate", "validateStatusCode");
         initForm(payload.metaData.publish, "includePublish", "publishStatusCode");
         initForm(payload.metaData.unpublish, "includeUnpublish", "unpublishStatusCode");
         initForm(payload.metaData.stop, "includeStop", "stopStatusCode");
