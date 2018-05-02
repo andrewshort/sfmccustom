@@ -57,12 +57,12 @@ define([
 
         if (!payload.metaData) payload.metaData = {};
 
-        $("#resultsBlock").html('');
+        $("#resultsBlock").val('');
         if (!payload.metaData.uid) {
             payload.metaData.uid = uniqueID();
         } else {
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
-                $("#resultsBlock").html(data);
+                $("#resultsBlock").val(JSON.stringify(data, null, 4));
             })
         }
 
