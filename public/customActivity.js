@@ -39,12 +39,27 @@ define([
         }        
     }
 
+    function uniqueID(){
+        function chr4(){
+          return Math.random().toString(16).slice(-4);
+        }
+        return chr4() + chr4() +
+          '-' + chr4() +
+          '-' + chr4() +
+          '-' + chr4() +
+          '-' + chr4() + chr4() + chr4();
+      }
+
     function initialize(data) {
         if (data) {
             payload = data;
         }
 
         if (!payload.metaData) payload.metaData = {};
+
+        if (!payload.metaData.uid) {
+            payload.metaData.uid = uniqueID();
+        }
 
         initForm(payload.metaData.save, "includeSave", "saveStatusCode");
         initForm(payload.metaData.validate, "includeValidate", "validateStatusCode");
@@ -88,14 +103,6 @@ define([
         $("#stopStatusCode").change(function() {
             metaDataUpdate("stop", "includeStop", "stopStatusCode");
         })
-
-        console.log("Payload from REST activity")
-        console.log(typeof payload);
-        console.log(payload);
-        console.log(JSON.stringify(payload, null, 2));
-        console.log(payload["id"]);
-
-
     }
 
     function onClickedNext() {
@@ -114,10 +121,11 @@ define([
 
     function setConfigArguments(metaDataObj, action) {
         var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
+        var uid = payload.metaData.uid;
 
         if (metaDataObj.include) {
             payload.configurationArguments[action] = {
-                "url" : baseUrl + "?action=" + action + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
+                "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
             }
         }  else {
             delete payload.configurationArguments[action];

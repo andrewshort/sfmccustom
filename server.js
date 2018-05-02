@@ -14,18 +14,16 @@ router.get('/results', function(req, res) {
 	res.json(results);
 });
 
-router.get('/results/:activityObjectId', function(req, res) {
+router.get('/results/:uid', function(req, res) {
 	res.json(results[req.params.activityObjectId]);
 });
 
-router.get('/results/:activityObjectId/:action', function(req, res) {
-	res.json(results[req.params.activityObjectId]); // TODO: filter by action
+router.get('/results/:uid/:action', function(req, res) {
+	res.json(results[req.params.uid]); // TODO: filter by action
 });
 
 router.post('/post', function(req, res) {
 	
-	var activityObjectID;
-
 	var returnStatusCode = req.query.returnStatusCode;
 	if (!returnStatusCode) returnStatusCode = 200;
 
@@ -34,20 +32,25 @@ router.post('/post', function(req, res) {
 		return;
 	}
 
+	var uid = req.query.uid;
+	if (!uid) {
+		res.status(400).send({ "message" : "uid is required"})
+	}
+
 	if (req.body.activityObjectID) {
 		activityObjectID = req.body.activityObjectID;
 	} else {
 		activityObjectID = "unknown"
 	}
 	
-	if (!results[activityObjectID]) { 
-		results[activityObjectID] = [];
+	if (!results[uid]) { 
+		results[uid] = [];
 	}
 
 	var action = req.query.action;
 	if (!action) action = "unspecified";
 
-	results[activityObjectID].push({
+	results[uid].push({
 		"action": action,
 		"timestampString" : new Date().toUTCString(), 
 		"timestamp" : Date.now(),
