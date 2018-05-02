@@ -16,6 +16,29 @@ define([
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     }
 
+    function initForm(metaDataObj, includeDomId, statusCodeDomId) {
+        if (!metaDataObj) return;
+
+        if (metaDataObj.include) {
+            $("#" + includeDomId).attr('checked', 'checked');
+            $("#" + statusCodeDomId).removeAttr('disabled');
+            $("#" + statusCodeDomId).val(metaDataObj.statusCode);
+        }
+    }
+
+    function metaDataUpdate(endpointProperty, includeDomId, statusCodeDomId) {
+        if (!payload.metaData["save"]) payload.metaData["save"] = {};
+            
+        payload.metaData["save"].include = $("#includeSave").is(":checked");
+        payload.metaData.save.statusCode = $("#saveStatusCode").val();
+
+        if ($("#includeSave").is(":checked")) {
+            $("#saveStatusCode").removeAttr('disabled');
+        } else {
+            $("#saveStatusCode").attr('disabled', 'disabled');
+        }        
+    }
+
     function initialize(data) {
         if (data) {
             payload = data;
@@ -23,22 +46,10 @@ define([
 
         if (!payload.metaData) payload.metaData = {};
 
-        $("#includeSave").removeAttr('checked');
-        $("#saveStatusCode").val("200");
-        $("#saveStatusCode").attr('disabled', 'disabled');
-
-        if (payload.metaData && payload.metaData.save) {
-            var include = payload.metaData.save.include;
-            var statusCode = payload.metaData.save.statusCode;
-
-            if (include) {
-                $("#includeSave").attr('checked', 'checked');
-                $("#saveStatusCode").removeAttr('disabled');
-                $("#saveStatusCode").val(payload.metaData.save.statusCode);
-            }
-        }  
-
+        initForm(payload.metaData.save, "includeSave", "saveStatusCode");
+        
         connection.on('clickedNext', onClickedNext);
+        
         $("#includeSave").change(function() {
             if (!payload.metaData.save) payload.metaData.save = {};
             payload.metaData.save.include = $("#includeSave").is(":checked");

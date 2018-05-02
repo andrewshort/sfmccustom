@@ -16,7 +16,15 @@
         "publish" : {
             "include": true,
             "statusCode" : 200
-        }        
+        },
+        "unpublish" : {
+            "include": false,
+            "statusCode" : 200
+        },
+        "stop" : {
+            "include": false,
+            "statusCode" : 200
+        }
     },
     "type": "Rest",
     "lang":
