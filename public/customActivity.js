@@ -57,7 +57,11 @@ define([
     function onClickedNext() {
 
         if (payload.metaData.save.include) {
-            payload.configurationArguments.save = "https://mcjbcustom.herokuapp.com/api/post?action=save&returnStatusCode=" & $("#saveStatusCode").val()
+            payload.configurationArguments.save = {
+                "url" : "https://mcjbcustom.herokuapp.com/api/post?action=save&returnStatusCode=" + $("#saveStatusCode").val()
+            }
+        }  else {
+            delete payload.configurationArguments.save;
         }
         
         payload['metaData'].isConfigured = true;
