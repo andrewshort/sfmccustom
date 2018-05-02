@@ -23,17 +23,16 @@ define([
 
         if (!payload.metaData) payload.metaData = {};
 
-        if (payload.metaData && payload.metaData.save) {
-            var includeSave = payload.metaData.save.includeSave;
-            var saveStatusCode = payload.metaData.save.saveStatusCode;
+        $("#includeSave").removeAttr('checked');
+        $("#saveStatusCode").val("200");
+        $("#saveStatusCode").attr('disabled', 'disabled');
 
-            if (includeSave) {
-                $("#includeSave").attr('checked', true);
-                $("#saveStatusCode").val('');
-                $("#saveStatusCode").attr('disabled', 'disabled');
-            } else {
-                $("#includeSave").attr('checked', false);
-                $("#saveStatusCode").val(saveStatusCode);
+        if (payload.metaData && payload.metaData.save) {
+            var include = payload.metaData.save.include;
+            var statusCode = payload.metaData.save.statusCode;
+
+            if (include) {
+                $("#includeSave").attr('checked', 'checked');
                 $("#saveStatusCode").removeAttr('disabled');
             }
         }  
@@ -57,14 +56,10 @@ define([
 
     function onClickedNext() {
 
-        // TODO: update the url in configurationArguments based on selection in UI
-        /*
-        payload.configurationArguments.save.url = $("#saveUrl").val();
-        payload.configurationArguments.publish.url = $("#publishUrl").val();
-        payload.configurationArguments.validate.url = $("#validateUrl").val();
-        payload.arguments.execute.url = $("#executeUrl").val();
-        */
-
+        if (payload.metaData.save.include) {
+            payload.configurationArguments.save = "https://mcjbcustom.herokuapp.com/api/post?action=save&returnStatusCode=" & $("#saveStatusCode").val()
+        }
+        
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);
     }
