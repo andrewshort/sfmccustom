@@ -95,13 +95,12 @@ define([
     function onClickedNext() {
         var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
 
-        if (payload.metaData.save.include) {
-            payload.configurationArguments.save = {
-                "url" : baseUrl + "?action=save&returnStatusCode=" + payload.configurationArguments.save.statusCode
-            }
-        }  else {
-            delete payload.configurationArguments.save;
-        }
+
+        setConfigArguments(payload.metaData.save, "save");
+        setConfigArguments(payload.metaData.validate, "validate");
+        setConfigArguments(payload.metaData.publish, "publish");
+        setConfigArguments(payload.metaData.unpublish, "unpublish");
+        setConfigArguments(payload.metaData.stop, "stop");
         
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);
