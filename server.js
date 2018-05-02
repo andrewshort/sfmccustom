@@ -26,6 +26,14 @@ router.post('/post', function(req, res) {
 	
 	var activityObjectID;
 
+	var returnStatusCode = req.query.returnStatusCode;
+	if (!returnStatusCode) returnStatusCode = 200;
+
+	if (isNaN(returnStatusCode)) { 
+		res.status(500).send({ "message" : "unexpected returnStatusCode"});
+		return;
+	}
+
 	if (req.body.activityObjectID) {
 		activityObjectID = req.body.activityObjectID;
 	} else {
@@ -46,7 +54,11 @@ router.post('/post', function(req, res) {
 		"body" : req.body
 	});
 	
-	res.json(req.body);
+	if (parseInt(returnStatusCode) <= 299) {
+		res.status(returnStatusCode).send(req.body)
+	} else {
+		res.status(returnStatusCode).send({ "message" : "non successful"})
+	}
 })
 
 server.use('/api', router);
