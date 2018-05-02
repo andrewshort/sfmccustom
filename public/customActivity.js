@@ -90,6 +90,7 @@ define([
         })
 
         console.log("Payload from REST activity")
+        console.log(typeof payload);
         console.log(payload);
 
 
