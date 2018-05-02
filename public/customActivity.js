@@ -30,7 +30,7 @@ define([
         if (!payload.metaData[endpointProperty]) payload.metaData[endpointProperty] = {};
             
         payload.metaData[endpointProperty].include = $("#" + includeDomId).is(":checked");
-        payload.metaData.save.statusCode = $("#" + statusCodeDomId).val();
+        payload.metaData[endpointProperty].statusCode = $("#" + statusCodeDomId).val();
 
         if ($("#" + includeDomId).is(":checked")) {
             $("#" + statusCodeDomId).removeAttr('disabled');
