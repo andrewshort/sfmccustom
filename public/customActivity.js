@@ -114,6 +114,14 @@ define([
         setConfigArguments(payload.metaData.publish, "publish");
         setConfigArguments(payload.metaData.unpublish, "unpublish");
         setConfigArguments(payload.metaData.stop, "stop");
+
+        payload.arguments.execute = 
+                            {
+                                "inArguments": [],
+                                "outArguments": [],
+                                "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
+                                "useJWT": true
+                            }
         
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);
