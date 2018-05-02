@@ -2,8 +2,8 @@
     "workflowApiVersion": "1.1",
     "metaData":
     {
-        "icon": "images/shorttek.png",
-        "iconSmall": "images/shorttek.png",
+        "icon": "images/paren.png",
+        "iconSmall": "images/paren.png",
         "category": "message",
         "save" : {
             "include": true,
