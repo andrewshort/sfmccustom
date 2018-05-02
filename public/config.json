@@ -5,19 +5,18 @@
         "icon": "images/shorttek.png",
         "iconSmall": "images/shorttek.png",
         "category": "message",
-        "posttestserver" : {
-            "save" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_save",
-            "publish" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_publish",
-            "validate" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_validate",
-            "execute" : "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_execute"
+        "save" : {
+            "include": true,
+            "statusCode" : 200
         },
-        "mcjbcustom" : {
-            "save" : "https://mcjbcustom.herokuapp.com/api/save",
-            "publish" : "https://mcjbcustom.herokuapp.com/api/publish",
-            "validate" : "https://mcjbcustom.herokuapp.com/api/validate",
-            "execute" : "https://mcjbcustom.herokuapp.com/api/execute"
-        }, 
-        "quickselect" : "posttestserver"
+        "validate" : {
+            "include": true,
+            "statusCode" : 200
+        },
+        "publish" : {
+            "include": true,
+            "statusCode" : 200
+        }        
     },
     "type": "Rest",
     "lang":
@@ -34,7 +33,7 @@
         {
             "inArguments": [],
             "outArguments": [],
-            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_execute",
+            "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute",
             "useJWT": true
         }
     },
@@ -43,15 +42,15 @@
         "applicationExtensionKey": "mcjbcustom",
         "save":
         {
-            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_save"
+            "url": "https://mcjbcustom.herokuapp.com/api/post?action=save"
         },
         "publish":
         {
-            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_publish"
+            "url": "https://mcjbcustom.herokuapp.com/api/post?action=publish"
         },
         "validate":
         {
-            "url": "https://posttestserver.com/post.php?dir=jb_sfmc_testBed_v1.1_rest_activity_validate"
+            "url": "https://mcjbcustom.herokuapp.com/api/post?action=validate"
         }
     },
     "wizardSteps": [

@@ -21,41 +21,49 @@ define([
             payload = data;
         }
 
-        $("#urlQuickSelect").val(payload.metaData.quickselect);
+        if (!payload.metaData) payload.metaData = {};
 
-        if (payload.configurationArguments) {
-            $("#saveUrl").val(payload.configurationArguments.save.url);
-            $("#publishUrl").val(payload.configurationArguments.publish.url);
-            $("#validateUrl").val(payload.configurationArguments.validate.url);
-        }  else {
-            console.log('no configurationArguments in sfmccustom');
-        }
+        if (payload.metaData && payload.metaData.save) {
+            var includeSave = payload.metaData.save.includeSave;
+            var saveStatusCode = payload.metaData.save.saveStatusCode;
 
-        if (payload.arguments) {
-            $("#executeUrl").val(payload.arguments.execute.url);
-        } else {
-            console.log('no arguments in sfmccustom');
-        }
+            if (includeSave) {
+                $("#includeSave").attr('checked', true);
+                $("#saveStatusCode").val('');
+                $("#saveStatusCode").attr('disabled', 'disabled');
+            } else {
+                $("#includeSave").attr('checked', false);
+                $("#saveStatusCode").val(saveStatusCode);
+                $("#saveStatusCode").removeAttr('disabled');
+            }
+        }  
 
         connection.on('clickedNext', onClickedNext);
+        $("#includeSave").change(function() {
+            if (!payload.metaData.save) payload.metaData.save = {};
+            payload.metaData.save.include = $("#includeSave").is(":checked");
+            if ($("#includeSave").is(":checked")) {
+                $("#saveStatusCode").val("200");
+                $("#saveStatusCode").removeAttr('disabled');
+            } else {
+                $("#saveStatusCode").attr('disabled', 'disabled');
+            }
+        })
 
-        $("#urlQuickSelect").change(function() {
-            var selection = $(this).val();
-
-            $("#saveUrl").val(payload.metaData[selection].save);
-            $("#publishUrl").val(payload.metaData[selection].publish);
-            $("#validateUrl").val(payload.metaData[selection].validate);
-            $("#executeUrl").val(payload.metaData[selection].execute);
-
+        $("#saveStatusCode").change(function() {
+            payload.metaData.save.statusCode = $("#saveStatusCode").val();
         })
     }
 
     function onClickedNext() {
 
+        // TODO: update the url in configurationArguments based on selection in UI
+        /*
         payload.configurationArguments.save.url = $("#saveUrl").val();
         payload.configurationArguments.publish.url = $("#publishUrl").val();
         payload.configurationArguments.validate.url = $("#validateUrl").val();
         payload.arguments.execute.url = $("#executeUrl").val();
+        */
 
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);

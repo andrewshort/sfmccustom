@@ -8,67 +8,38 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 var router = express.Router();
 
-var results = {
-}
+var results = {}
 
 router.get('/results', function(req, res) {
 	res.json(results);
 });
 
-router.get('/results', function(req, res) {
-	res.json(results);
+router.get('/results/:activityObjectId', function(req, res) {
+	res.json(results[req.params.activityObjectId]);
 });
 
-var storeResults = function(reqBody, endpoint) {
-	if (!results[reqBody.definitionId]) { 
-		results[reqBody.definitionId] = [];
-		console.log(results);
+router.get('/results/:activityObjectId/:action', function(req, res) {
+	res.json(results[req.params.activityObjectId]); // TODO: filter by action
+});
+
+router.post('/post', function(req, res) {
+	if (!req.body.activityObjectId) {
+		res.status(400).json({ "error" : "activityObjectId required"});
 	}
-	results[reqBody.definitionId].push({
-		"endpoint": endpoint,
+
+	if (!results[req.body.activityObjectId]) { 
+		results[req.body.activityObjectId] = [];
+	}
+
+	var action = req.query.action;
+	if (!action) action = "unspecified";
+
+	results[req.body.activityObjectId].push({
+		"action": action,
 		"timestampString" : new Date().toUTCString(), 
 		"timestamp" : Date.now(),
-		"body" : reqBody
+		"body" : req.body
 	});
-	console.log(results);
-}
-
-router.post('/save', function(req, res) {
-	if (!req.body.definitionId) {
-		res.status(400).json({ "error" : "definitionId required"});
-	}
-	
-	storeResults(req.body, "save");
-	
-	res.json(req.body);
-})
-
-router.post('/validate', function(req, res) {
-	if (!req.body.definitionId) {
-		res.status(400).json({ "error" : "definitionId required"});
-	}
-	
-	storeResults(req.body, "validate");
-	
-	res.json(req.body);
-})
-
-router.post('/publish', function(req, res) {
-	if (!req.body.definitionId) {
-		res.status(400).json({ "error" : "definitionId required"});
-	}
-	
-	storeResults(req.body, "publish");
-	
-	res.json(req.body);
-})
-
-router.post('/execute', function(req, res) {
-	if (!req.body.definitionId) {
-		res.status(400).json({ "error" : "definitionId required"});
-	}
-	
-	storeResults(req.body, "execute");
 	
 	res.json(req.body);
 })
