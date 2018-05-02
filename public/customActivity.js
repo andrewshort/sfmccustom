@@ -27,15 +27,15 @@ define([
     }
 
     function metaDataUpdate(endpointProperty, includeDomId, statusCodeDomId) {
-        if (!payload.metaData["save"]) payload.metaData["save"] = {};
+        if (!payload.metaData[endpointProperty]) payload.metaData[endpointProperty] = {};
             
-        payload.metaData["save"].include = $("#includeSave").is(":checked");
-        payload.metaData.save.statusCode = $("#saveStatusCode").val();
+        payload.metaData[endpointProperty].include = $("#" + includeDomId).is(":checked");
+        payload.metaData.save.statusCode = $("#" + statusCodeDomId).val();
 
-        if ($("#includeSave").is(":checked")) {
-            $("#saveStatusCode").removeAttr('disabled');
+        if ($("#" + includeDomId).is(":checked")) {
+            $("#" + statusCodeDomId).removeAttr('disabled');
         } else {
-            $("#saveStatusCode").attr('disabled', 'disabled');
+            $("#" + statusCodeDomId).attr('disabled', 'disabled');
         }        
     }
 
@@ -47,30 +47,57 @@ define([
         if (!payload.metaData) payload.metaData = {};
 
         initForm(payload.metaData.save, "includeSave", "saveStatusCode");
+        initForm(payload.metaData.validate, "includeValidate", "valiateStatusCode");
+        initForm(payload.metaData.publish, "includePublish", "publishStatusCode");
+        initForm(payload.metaData.unpublish, "includeUnpublish", "unpublishStatusCode");
+        initForm(payload.metaData.stop, "includeStop", "stopStatusCode");
         
         connection.on('clickedNext', onClickedNext);
         
         $("#includeSave").change(function() {
-            if (!payload.metaData.save) payload.metaData.save = {};
-            payload.metaData.save.include = $("#includeSave").is(":checked");
-            if ($("#includeSave").is(":checked")) {
-                $("#saveStatusCode").val("200");
-                $("#saveStatusCode").removeAttr('disabled');
-            } else {
-                $("#saveStatusCode").attr('disabled', 'disabled');
-            }
+            metaDataUpdate("save", "includeSave", "saveStatusCode");
+        })
+        $("#saveStatusCode").change(function() {
+            metaDataUpdate("save", "includeSave", "saveStatusCode");
         })
 
-        $("#saveStatusCode").change(function() {
-            payload.metaData.save.statusCode = $("#saveStatusCode").val();
+        $("#includeValidate").change(function() {
+            metaDataUpdate("validate", "includeValidate", "valiateStatusCode");
         })
+        $("#valiateStatusCode").change(function() {
+            metaDataUpdate("validate", "includeValidate", "valiateStatusCode");
+        })
+
+        $("#includePublish").change(function() {
+            metaDataUpdate("publish", "includePublish", "publishStatusCode");
+        })
+        $("#publishStatusCode").change(function() {
+            metaDataUpdate("publish", "includePublish", "publishStatusCode");
+        })
+
+        $("#includeUnpublish").change(function() {
+            metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
+        })
+        $("#unpublishStatusCode").change(function() {
+            metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
+        })
+
+        $("#includeStop").change(function() {
+            metaDataUpdate("stop", "includeStop", "stopStatusCode");
+        })
+        $("#stopStatusCode").change(function() {
+            metaDataUpdate("stop", "includeStop", "stopStatusCode");
+        })
+
+
     }
 
     function onClickedNext() {
+        var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
 
         if (payload.metaData.save.include) {
             payload.configurationArguments.save = {
-                "url" : "https://mcjbcustom.herokuapp.com/api/post?action=save&returnStatusCode=" + $("#saveStatusCode").val()
+                "url" : baseUrl + "?action=save&returnStatusCode=" + payload.configurationArguments.save.statusCode
             }
         }  else {
             delete payload.configurationArguments.save;
@@ -78,5 +105,17 @@ define([
         
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);
+    }
+
+    function setConfigArguments(metaDataObj, action) {
+        var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
+
+        if (metaDataObj.include) {
+            payload.configurationArguments[action] = {
+                "url" : baseUrl + "?action=" + action + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
+            }
+        }  else {
+            delete payload.configurationArguments[action];
+        }
     }
 });

@@ -6,19 +6,21 @@
     <title>Custom IXN Activity Test</title>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-    (function() {
-        var config = {
-            baseUrl: ''
-        };
-        var dependencies = [
-            'customActivity'
-        ];
-        require(config, dependencies);
-    })();
+        (function () {
+            var config = {
+                baseUrl: ''
+            };
+            var dependencies = [
+                'customActivity'
+            ];
+            require(config, dependencies);
+        })();
     </script>
 </head>
 
@@ -45,7 +47,80 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Include Validate Endpoint?</label>
+                    <input type="checkbox" class="form-control" id="includeValidate" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Validate Response Status Code</label>
+                    <select class="form-control" id="validateStatusCode" disabled="disabled">
+                        <option value="200" selected="selected">200</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Include Publish Endpoint?</label>
+                        <input type="checkbox" class="form-control" id="includePubish" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Publish Response Status Code</label>
+                        <select class="form-control" id="publishStatusCode" disabled="disabled">
+                            <option value="200" selected="selected">200</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Include Unpublish Endpoint?</label>
+                        <input type="checkbox" class="form-control" id="includeUnpublish" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Unpublish Response Status Code</label>
+                        <select class="form-control" id="unpublishStatusCode" disabled="disabled">
+                            <option value="200" selected="selected">200</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Include Stop Endpoint?</label>
+                        <input type="checkbox" class="form-control" id="includeStop" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Stop Response Status Code</label>
+                        <select class="form-control" id="stopStatusCode" disabled="disabled">
+                            <option value="200" selected="selected">200</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                </div>
+        </div>
     </div>
+
 </body>
 
 </html>
