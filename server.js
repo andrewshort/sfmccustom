@@ -15,7 +15,7 @@ router.get('/results', function(req, res) {
 });
 
 router.get('/results/:uid', function(req, res) {
-	res.json(results[req.params.activityObjectId]);
+	res.json(results[req.params.uid]);
 });
 
 router.get('/results/:uid/:action', function(req, res) {
@@ -37,7 +37,7 @@ router.post('/post', function(req, res) {
 		res.status(400).send({ "message" : "uid is required"})
 		return;
 	}
-	
+
 	if (!results[uid]) { 
 		results[uid] = [];
 	}
