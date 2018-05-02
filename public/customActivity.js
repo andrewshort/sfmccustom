@@ -59,6 +59,8 @@ define([
 
         if (!payload.metaData.uid) {
             payload.metaData.uid = uniqueID();
+        } else {
+            $("#resultsFrame").attr('src', 'https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid);
         }
 
         initForm(payload.metaData.save, "includeSave", "saveStatusCode");
