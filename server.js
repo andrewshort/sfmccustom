@@ -24,22 +24,22 @@ router.get('/results/:activityObjectId/:action', function(req, res) {
 
 router.post('/post', function(req, res) {
 	
-	var activityObjectId;
+	var activityObjectID;
 
-	if (req.body.activityObjectId) {
-		activityObjectId = req.body.activityObjectId;
+	if (req.body.activityObjectID) {
+		activityObjectID = req.body.activityObjectID;
 	} else {
-		activityObjectId = "unknown"
+		activityObjectID = "unknown"
 	}
 	
-	if (!results[activityObjectId]) { 
-		results[activityObjectId] = [];
+	if (!results[activityObjectID]) { 
+		results[activityObjectID] = [];
 	}
 
 	var action = req.query.action;
 	if (!action) action = "unspecified";
 
-	results[activityObjectId].push({
+	results[activityObjectID].push({
 		"action": action,
 		"timestampString" : new Date().toUTCString(), 
 		"timestamp" : Date.now(),
