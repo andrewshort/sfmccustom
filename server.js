@@ -23,18 +23,23 @@ router.get('/results/:activityObjectId/:action', function(req, res) {
 });
 
 router.post('/post', function(req, res) {
-	if (!req.body.activityObjectId) {
-		res.status(400).json({ "error" : "activityObjectId required"});
-	}
+	
+	var activityObjectId;
 
-	if (!results[req.body.activityObjectId]) { 
-		results[req.body.activityObjectId] = [];
+	if (req.body.activityObjectId) {
+		activityObjectId = req.body.activityObjectId;
+	} else {
+		activityObjectId = "unknown"
+	}
+	
+	if (!results[activityObjectId]) { 
+		results[activityObjectId] = [];
 	}
 
 	var action = req.query.action;
 	if (!action) action = "unspecified";
 
-	results[req.body.activityObjectId].push({
+	results[activityObjectId].push({
 		"action": action,
 		"timestampString" : new Date().toUTCString(), 
 		"timestamp" : Date.now(),
