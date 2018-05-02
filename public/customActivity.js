@@ -89,6 +89,9 @@ define([
             metaDataUpdate("stop", "includeStop", "stopStatusCode");
         })
 
+        console.log("Payload from REST activity")
+        console.log(payload);
+
 
     }
 
