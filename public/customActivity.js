@@ -79,7 +79,7 @@ define([
         $("#includeValidate").change(function() {
             metaDataUpdate("validate", "includeValidate", "validateStatusCode");
         })
-        $("#valiateStatusCode").change(function() {
+        $("#validateStatusCode").change(function() {
             metaDataUpdate("validate", "includeValidate", "validateStatusCode");
         })
 
