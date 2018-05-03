@@ -10,7 +10,7 @@ define([
     var connection = new Postmonger.Session();
 
     $(window).ready(onRender);
-    connection.on('initActivity', initialize);
+    connection.on('initActivityRunningModal', initialize);
 
     function onRender() {
         connection.trigger('ready'); 
