@@ -18,6 +18,10 @@ define([
         $('#close').click(function(){
             connection.trigger('destroy');
         });
+    }
+
+    function initialize(data) {
+        payload = data;
 
         $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
@@ -26,10 +30,6 @@ define([
                 document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
          
             });
-    }
-
-    function initialize(data) {
-        payload = data;
     }
 
 });
