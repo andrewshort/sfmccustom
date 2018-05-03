@@ -42,9 +42,9 @@ define([
             if( !currentStep || currentStep.key !== step.key ) {
                 connection.trigger('gotoStep', step);
             }    
-
-            currentStep = step.key;
         }
+
+        currentStep = step;
         
         $('.step').hide();
 
@@ -166,7 +166,7 @@ define([
 
     function onClickedNext() {
         console.log('onClickedNext: ' + currentStep);
-        if (currentStep.key == "step1") {
+        if (!currentStep || currentStep.key == "step1") {
             connection.trigger('nextStep');
             return;
         }
