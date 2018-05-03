@@ -25,109 +25,109 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron">
-            <h3>Journey Builder REST Explorer</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Include Save Endpoint?</label>
-                    <input type="checkbox" class="form-control" id="includeSave" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Save Response Status Code</label>
-                    <select class="form-control" id="saveStatusCode" disabled="disabled">
-                        <option value="200" selected="selected">200</option>
-                        <option value="400">400</option>
-                        <option value="500">500</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Include Validate Endpoint?</label>
-                    <input type="checkbox" class="form-control" id="includeValidate" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Validate Response Status Code</label>
-                    <select class="form-control" id="validateStatusCode" disabled="disabled">
-                        <option value="200" selected="selected">200</option>
-                        <option value="400">400</option>
-                        <option value="500">500</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Include Publish Endpoint?</label>
-                        <input type="checkbox" class="form-control" id="includePublish" />
+    <div id="step1">
+            <div class="container">
+                    <div class="jumbotron">
+                        <h3>Journey Builder REST Explorer</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Include Save Endpoint?</label>
+                                <input type="checkbox" class="form-control" id="includeSave" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Save Response Status Code</label>
+                                <select class="form-control" id="saveStatusCode" disabled="disabled">
+                                    <option value="200" selected="selected">200</option>
+                                    <option value="400">400</option>
+                                    <option value="500">500</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Include Validate Endpoint?</label>
+                                <input type="checkbox" class="form-control" id="includeValidate" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Validate Response Status Code</label>
+                                <select class="form-control" id="validateStatusCode" disabled="disabled">
+                                    <option value="200" selected="selected">200</option>
+                                    <option value="400">400</option>
+                                    <option value="500">500</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Include Publish Endpoint?</label>
+                                    <input type="checkbox" class="form-control" id="includePublish" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Publish Response Status Code</label>
+                                    <select class="form-control" id="publishStatusCode" disabled="disabled">
+                                        <option value="200" selected="selected">200</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Include Unpublish Endpoint?</label>
+                                    <input type="checkbox" class="form-control" id="includeUnpublish" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Unpublish Response Status Code</label>
+                                    <select class="form-control" id="unpublishStatusCode" disabled="disabled">
+                                        <option value="200" selected="selected">200</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Include Stop Endpoint?</label>
+                                    <input type="checkbox" class="form-control" id="includeStop" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Stop Response Status Code</label>
+                                    <select class="form-control" id="stopStatusCode" disabled="disabled">
+                                        <option value="200" selected="selected">200</option>
+                                        <option value="400">400</option>
+                                        <option value="500">500</option>
+                                    </select>
+                                </div>
+                            </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Publish Response Status Code</label>
-                        <select class="form-control" id="publishStatusCode" disabled="disabled">
-                            <option value="200" selected="selected">200</option>
-                            <option value="400">400</option>
-                            <option value="500">500</option>
-                        </select>
-                    </div>
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Include Unpublish Endpoint?</label>
-                        <input type="checkbox" class="form-control" id="includeUnpublish" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Unpublish Response Status Code</label>
-                        <select class="form-control" id="unpublishStatusCode" disabled="disabled">
-                            <option value="200" selected="selected">200</option>
-                            <option value="400">400</option>
-                            <option value="500">500</option>
-                        </select>
-                    </div>
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Include Stop Endpoint?</label>
-                        <input type="checkbox" class="form-control" id="includeStop" />
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Stop Response Status Code</label>
-                        <select class="form-control" id="stopStatusCode" disabled="disabled">
-                            <option value="200" selected="selected">200</option>
-                            <option value="400">400</option>
-                            <option value="500">500</option>
-                        </select>
-                    </div>
-                </div>
-        </div>
-        <div id="resultsDiv">
-            <pre>
-                <code id="resultsBlock" style="max-height: 600px; overflow: scroll;"></code>
-            </pre>
-        </div>
     </div>
 
+    <div id="step2">
+            <div id="resultsDiv">            
+            </div>
+    </div>
     
-
 </body>
 
 </html>

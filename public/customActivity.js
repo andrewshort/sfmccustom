@@ -7,6 +7,7 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
+    var currentStep = "step1";
 
     $(window).ready(onRender);
 
@@ -60,6 +61,13 @@ define([
         $("#resultsDiv").val('');
         if (!payload.metaData.uid) {
             payload.metaData.uid = uniqueID();
+            payload.arguments.execute = 
+                            {
+                                "inArguments": [],
+                                "outArguments": [],
+                                "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
+                                "useJWT": true
+                            }
         } else {
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
@@ -113,22 +121,18 @@ define([
     }
 
     function onClickedNext() {
-        var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
 
+        if (currentStep == "step1") {
+            currentStep = "step2";
+            connection.trigger('nextStep');
+            return;
+        }
 
         setConfigArguments(payload.metaData.save, "save");
         setConfigArguments(payload.metaData.validate, "validate");
         setConfigArguments(payload.metaData.publish, "publish");
         setConfigArguments(payload.metaData.unpublish, "unpublish");
         setConfigArguments(payload.metaData.stop, "stop");
-
-        payload.arguments.execute = 
-                            {
-                                "inArguments": [],
-                                "outArguments": [],
-                                "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
-                                "useJWT": true
-                            }
         
         payload['metaData'].isConfigured = true;
         connection.trigger('updateActivity', payload);

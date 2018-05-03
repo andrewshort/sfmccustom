@@ -62,10 +62,10 @@
         }
     },
     "wizardSteps": [
-    {
-        "label": "Step 1",
-        "key": "step1"
-    }],
+    {  "label": "Publish", "key": "step1" },
+    {  "label": "Results", "key": "step2" }
+    ],
+    
     "userInterfaces":
     {
         "configModal":
