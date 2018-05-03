@@ -10,6 +10,11 @@ define([
     var currentStep = null;
     var initialized = false;
 
+    var steps = [
+        {  "label": "Publish", "key": "step1" },
+        {  "label": "Results", "key": "step2" }
+        ];
+
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
