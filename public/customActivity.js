@@ -14,6 +14,8 @@ define([
 
     connection.on('initActivity', initialize);
     connection.on('gotoStep', onGotoStep);
+    connection.on('clickedBack', onClickedBack);
+    connection.on('clickedNext', onClickedNext);
 
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
@@ -22,6 +24,10 @@ define([
     function onGotoStep (step) {
         showStep(step);
         connection.trigger('ready');
+    }
+
+    function onClickedBack () {
+        connection.trigger('prevStep');
     }
 
     function showStep(step, stepIndex) {
@@ -118,8 +124,6 @@ define([
         initForm(payload.metaData.publish, "includePublish", "publishStatusCode");
         initForm(payload.metaData.unpublish, "includeUnpublish", "unpublishStatusCode");
         initForm(payload.metaData.stop, "includeStop", "stopStatusCode");
-        
-        connection.on('clickedNext', onClickedNext);
         
         $("#includeSave").change(function() {
             metaDataUpdate("save", "includeSave", "saveStatusCode");
