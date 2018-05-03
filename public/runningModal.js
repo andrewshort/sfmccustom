@@ -5,9 +5,12 @@ define([
 ) {
     'use strict';
 
+    var payload = {};
+
     var connection = new Postmonger.Session();
 
     $(window).ready(onRender);
+    connection.on('initActivity', initialize);
 
     function onRender() {
         connection.trigger('ready'); 
@@ -15,5 +18,18 @@ define([
         $('#close').click(function(){
             connection.trigger('destroy');
         });
+
+        $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
+                
+                $("#resultsDiv").html('');
+
+                document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
+         
+            });
     }
+
+    function initialize(data) {
+        payload = data;
+    }
+
 });
