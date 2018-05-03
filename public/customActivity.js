@@ -126,17 +126,7 @@ define([
             showStep(null, 3);
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
-                if (!data) { 
-                    console.log('data is null');
-                    return; 
-                }
-
-                console.log(data);
-                console.log(data.length)
-                if (!data || data.length <= 0) {
-                    document.getElementById("resultsDiv").appendChild(document.createElement('div')).innerHTML = "No data to display for endpoint usage";
-                    return;
-                }
+                $("#resultsDiv").html('');
 
                 document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
          
