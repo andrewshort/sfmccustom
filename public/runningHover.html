@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Custom IXN Activity Test</title>
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/require.js"></script>
+        <script type="text/javascript">
+            (function() {
+                var config = {
+                    baseUrl: ''
+                };
+                var dependencies = [
+                    'runningHover'
+                ];
+                require(config, dependencies);
+            })();
+        </script>
+
+        <!--Styles-->
+        <style type="text/css">
+            body {
+                padding: 20px;
+                margin: 0;
+            }
+            .step {
+                display: none;
+            }
+            #step1 {
+                display: block;
+            }
+        </style>
+
+    </head>
+    <body>
+        Click to see stats
+    </body>
+</html>
