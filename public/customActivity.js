@@ -12,7 +12,8 @@ define([
 
     var steps = [
         {  "label": "Publish", "key": "step1" },
-        {  "label": "Results", "key": "step2" }
+        {  "label": "Execute", "key": "step2" },
+        {  "label": "Results", "key": "step3" }
         ];
 
     $(window).ready(onRender);
@@ -61,6 +62,11 @@ define([
                 break;
             case 'step2':
                 $('#step2').show();
+                connection.trigger('updateButton', { button: 'next', enabled: true });
+                connection.trigger('updateButton', { button: 'back', visible: true });
+                break;
+            case 'step3':
+                $('#step3').show();
                 connection.trigger('updateButton', { button: 'back', visible: true });
                 connection.trigger('updateButton', { button: 'next', text: 'done', visible: true });
                 break;
@@ -177,7 +183,7 @@ define([
 
     function onClickedNext() {
         console.log('onClickedNext: ' + currentStep);
-        if (!currentStep || currentStep.key == "step1") {
+        if (!currentStep || currentStep.key != "step3") {
             connection.trigger('nextStep');
             return;
         }
