@@ -35,14 +35,13 @@ define([
             step = steps[stepIndex-1];
         }
 
-        /*
+        
         if( initialized ) {
             if( !currentStep || currentStep.key !== step.key ) {
                 connection.trigger('gotoStep', step);
             }    
         }
-        */
-
+        
         currentStep = step;
 
         $('.step').hide();
