@@ -7,7 +7,7 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
-    var currentStep = "step1";
+    var currentStep = null;
     var initialized = false;
 
     $(window).ready(onRender);
@@ -26,7 +26,7 @@ define([
         connection.trigger('ready');
     }
 
-    function onClickedBack () {
+    function onClickedBack () {        
         connection.trigger('prevStep');
     }
 
@@ -35,15 +35,17 @@ define([
             step = steps[stepIndex-1];
         }
 
+        console.log(step);
+        console.log(initialized);
         
         if( initialized ) {
             if( !currentStep || currentStep.key !== step.key ) {
                 connection.trigger('gotoStep', step);
             }    
+
+            currentStep = step;
         }
         
-        currentStep = step;
-
         $('.step').hide();
 
         switch(step.key) {
@@ -163,7 +165,7 @@ define([
     }
 
     function onClickedNext() {
-
+        console.log('onClickedNext: ' + currentStep);
         if (currentStep == "step1") {
             currentStep = "step2";
             connection.trigger('nextStep');
