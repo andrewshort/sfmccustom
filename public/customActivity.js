@@ -8,13 +8,49 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var currentStep = "step1";
+    var initialized = false;
 
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
+    connection.on('gotoStep', onGotoStep);
 
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
+    }
+
+    function onGotoStep (step) {
+        showStep(step);
+        connection.trigger('ready');
+    }
+
+    function showStep(step, stepIndex) {
+        if (stepIndex && !step) {
+            step = steps[stepIndex-1];
+        }
+
+        if( initialized ) {
+            if( !currentStep || currentStep.key !== step.key ) {
+                connection.trigger('gotoStep', step);
+            }
+
+            currentStep = step;
+        }
+
+        $('.step').hide();
+
+        switch(step.key) {
+            case 'step1':
+                $('#step1').show();
+                connection.trigger('updateButton', { button: 'next', enabled: true });
+                connection.trigger('updateButton', { button: 'back', visible: false });
+                break;
+            case 'step2':
+                $('#step2').show();
+                connection.trigger('updateButton', { button: 'back', visible: true });
+                connection.trigger('updateButton', { button: 'next', text: 'done', visible: true });
+                break;
+        }
     }
 
     function initForm(metaDataObj, includeDomId, statusCodeDomId) {
@@ -52,6 +88,7 @@ define([
       }
 
     function initialize(data) {
+        initialized = true;
         if (data) {
             payload = data;
         }
