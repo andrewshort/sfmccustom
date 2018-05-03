@@ -40,9 +40,6 @@ define([
         if (stepIndex && !step) {
             step = steps[stepIndex-1];
         }
-
-        console.log(step);
-        console.log(initialized);
         
         if( initialized ) {
             if( !currentStep || currentStep.key !== step.key ) {
@@ -129,6 +126,13 @@ define([
             showStep(null, 3);
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
+                if (!data) { 
+                    console.log('data is null');
+                    return; 
+                }
+
+                console.log(data);
+                console.log(data.length)
                 if (!data || data.length <= 0) {
                     document.getElementById("resultsDiv").appendChild(document.createElement('div')).innerHTML = "No data to display for endpoint usage";
                     return;
@@ -182,7 +186,6 @@ define([
     }
 
     function onClickedNext() {
-        console.log('onClickedNext: ' + currentStep);
         if (!currentStep || currentStep.key != "step3") {
             connection.trigger('nextStep');
             return;
