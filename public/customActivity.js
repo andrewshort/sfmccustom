@@ -115,8 +115,14 @@ define([
                                 "useJWT": true
                             }
         } else {
+            showStep(null, 2);
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
+                if (!data || data.length <= 0) {
+                    document.getElementById("resultsDiv").appendChild(document.createElement('div')).innerHTML = "No data to display for endpoint usage";
+                    return;
+                }
+
                 document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
          
             })
