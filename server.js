@@ -53,7 +53,12 @@ router.post('/post', function(req, res) {
 	});
 	
 	if (parseInt(returnStatusCode) <= 299) {
-		res.status(returnStatusCode).send(req.body)
+		res.status(returnStatusCode).send({
+			"action": action,
+			"timestampString" : new Date().toUTCString(), 
+			"timestamp" : Date.now(),
+			"body" : req.body
+		});
 	} else {
 		res.status(returnStatusCode).send({ "message" : "non successful"})
 	}

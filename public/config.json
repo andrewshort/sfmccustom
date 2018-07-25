@@ -97,7 +97,16 @@
                         "direction": "in"
                     }
                 }],
-                "outArguments": []
+                "outArguments": [
+                    {
+                        "timestamp" :
+                        {
+                            "dataType" : "date",
+                            "isNullable" : false,
+                            "direction" : "out"
+                        }
+                    }
+                ]
             }
         }
     }
