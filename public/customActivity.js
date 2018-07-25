@@ -12,7 +12,7 @@ define([
 
     var steps = [
         {  "label": "Publish", "key": "step1" },
-        {  "label": "Execute", "key": "step2" },
+        //{  "label": "Execute", "key": "step2" },
         {  "label": "Results", "key": "step3" }
         ];
 
