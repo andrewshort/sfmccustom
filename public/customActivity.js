@@ -42,7 +42,7 @@ define([
         }
         
         if( initialized ) {
-            if( !currentStep || currentStep.key !== step.key ) {
+            if( !currentStep || ( step && currentStep.key !== step.key ) ) {
                 connection.trigger('gotoStep', step);
             }    
         }
