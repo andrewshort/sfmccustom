@@ -48,7 +48,7 @@ router.post('/post', function(req, res) {
 	results[uid].push({
 		"action": action,
 		"timestampString" : new Date().toUTCString(), 
-		"timestamp" : Date.now(),
+		"timestamp" : new Date().toISOString(),
 		"body" : req.body
 	});
 	
@@ -56,7 +56,7 @@ router.post('/post', function(req, res) {
 		res.status(returnStatusCode).send({
 			"action": action,
 			"timestampString" : new Date().toUTCString(), 
-			"timestamp" : Date.now(),
+			"timestamp" : new Date().toISOString(),
 			"body" : req.body
 		});
 	} else {
