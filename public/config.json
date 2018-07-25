@@ -102,9 +102,10 @@
                     {
                         "timestamp" :
                         {
-                            "dataType" : "date",
-                            "isNullable" : false,
-                            "direction" : "out"
+                            "dataType": "Date",
+                            "isNullable": false,
+                            "direction": "Out",
+                            "access": "Visible"
                         }
                     }
                 ]
