@@ -118,7 +118,9 @@ define([
             payload.arguments.execute = 
                             {
                                 "inArguments": [],
-                                "outArguments": [],
+                                "outArguments": [{
+                                    "timestamp" : ""
+                                }],
                                 "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
                                 "useJWT": true
                             }
