@@ -57,7 +57,7 @@ router.post('/post', function(req, res) {
 			"action": action,
 			"timestampString" : new Date().toUTCString(), 
 			"timestamp" : new Date().toISOString(),
-			"body" : req.body
+			"body" : JSON.stringify(req.body)
 		});
 	} else {
 		res.status(returnStatusCode).send({ "message" : "non successful"})
