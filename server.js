@@ -45,18 +45,22 @@ router.post('/post', function(req, res) {
 	var action = req.query.action;
 	if (!action) action = "unspecified";
 
+	var now = new Date();
 	results[uid].push({
 		"action": action,
-		"timestampString" : new Date().toUTCString(), 
-		"timestamp" : new Date().toISOString(),
+		"timestampString" : now.toUTCString(), 
+		"timestamp" : now.toISOString(),
 		"body" : req.body
 	});
 	
+	var sampleOutputDate = new Date();
+	sampleOutputDate.setDate(sampleOutputDate.getDate() + 7);
 	if (parseInt(returnStatusCode) <= 299) {
 		res.status(returnStatusCode).send({
 			"action": action,
-			"timestampString" : new Date().toUTCString(), 
-			"timestamp" : new Date().toISOString(),
+			"timestampString" : now.toUTCString(), 
+			"timestamp" : now.toISOString(),
+			"sampleOutputDate" : sampleOutputDate.toISOString(),
 			"body" : JSON.stringify(req.body)
 		});
 	} else {

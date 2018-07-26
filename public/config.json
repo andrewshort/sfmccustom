@@ -41,7 +41,7 @@
         {
             "inArguments": [],
             "outArguments": [{
-                "timestamp" : ""
+                "sampleOutputDate" : ""
             }],
             "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute",
             "useJWT": true
@@ -100,7 +100,7 @@
                 }],
                 "outArguments": [
                     {
-                        "timestamp" :
+                        "sampleOutputDate" :
                         {
                             "dataType": "Date",
                             "isNullable": false,
