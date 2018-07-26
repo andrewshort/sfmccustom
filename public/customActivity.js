@@ -40,6 +40,10 @@ define([
         if (stepIndex && !step) {
             step = steps[stepIndex-1];
         }
+
+        if (!step && stepIndex == 0) {
+            step = steps[0]
+        }
         
         if( initialized ) {
             if( !currentStep || ( step && currentStep.key !== step.key ) ) {
