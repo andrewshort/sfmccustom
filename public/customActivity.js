@@ -129,7 +129,7 @@ define([
                                 "useJWT": true
                             }
         } else {
-            showStep(null, 3);
+            showStep(null, 2);
             $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
                 $("#resultsDiv").html('');
