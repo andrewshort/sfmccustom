@@ -54,7 +54,8 @@ router.post('/post', function(req, res) {
 	});
 	
 	var sampleOutputDate = new Date();
-	sampleOutputDate.setDate(sampleOutputDate.getDate() + 7);
+	var randomNumberDays = Math.floor(Math.random(0,10) * 10) + 1;
+	sampleOutputDate.setDate(sampleOutputDate.getDate() + randomNumberDays);
 	if (parseInt(returnStatusCode) <= 299) {
 		res.status(returnStatusCode).send({
 			"action": action,
