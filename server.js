@@ -46,16 +46,18 @@ router.post('/post', function(req, res) {
 	if (!action) action = "unspecified";
 
 	var now = new Date();
+	var sampleOutputDate = new Date();
+	var randomNumberDays = Math.floor(Math.random(0,10) * 10) + 1;
+	sampleOutputDate.setDate(sampleOutputDate.getDate() + randomNumberDays);
+
 	results[uid].push({
 		"action": action,
 		"timestampString" : now.toUTCString(), 
 		"timestamp" : now.toISOString(),
+		"sampleOutputDate" : sampleOutputDate.toISOString(),
 		"body" : req.body
 	});
 	
-	var sampleOutputDate = new Date();
-	var randomNumberDays = Math.floor(Math.random(0,10) * 10) + 1;
-	sampleOutputDate.setDate(sampleOutputDate.getDate() + randomNumberDays);
 	if (parseInt(returnStatusCode) <= 299) {
 		res.status(returnStatusCode).send({
 			"action": action,
