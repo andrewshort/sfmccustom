@@ -125,12 +125,12 @@ define([
                                 "outArguments": [{
                                     "timestamp" : ""
                                 }],
-                                "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
+                                "url": "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
                                 "useJWT": true
                             }
         } else {
             showStep(null, 2);
-            $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
+            $.get('https://sfmccustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
                 $("#resultsDiv").html('');
 
@@ -198,7 +198,7 @@ define([
     }
 
     function setConfigArguments(metaDataObj, action) {
-        var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
+        var baseUrl = "https://sfmccustom.herokuapp.com/api/post"
         var uid = payload.metaData.uid;
 
         if (metaDataObj && metaDataObj.include) {

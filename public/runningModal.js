@@ -23,7 +23,7 @@ define([
     function initialize(data) {
         payload = data;
 
-        $.get('https://mcjbcustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
+        $.get('https://sfmccustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
                 $("#resultsDiv").html('');
 

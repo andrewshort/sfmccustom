@@ -43,7 +43,7 @@
             "outArguments": [{
                 "sampleOutputDate" : ""
             }],
-            "url": "https://mcjbcustom.herokuapp.com/api/post?action=execute",
+            "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
             "useJWT": true
         }
     },
@@ -52,15 +52,15 @@
         "applicationExtensionKey": "mcjbcustom",
         "save":
         {
-            "url": "https://mcjbcustom.herokuapp.com/api/post?action=save"
+            "url": "https://sfmccustom.herokuapp.com/api/post?action=save"
         },
         "publish":
         {
-            "url": "https://mcjbcustom.herokuapp.com/api/post?action=publish"
+            "url": "https://sfmccustom.herokuapp.com/api/post?action=publish"
         },
         "validate":
         {
-            "url": "https://mcjbcustom.herokuapp.com/api/post?action=validate"
+            "url": "https://sfmccustom.herokuapp.com/api/post?action=validate"
         }
     },
     "wizardSteps": [
