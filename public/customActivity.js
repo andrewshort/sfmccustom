@@ -201,7 +201,7 @@ define([
         var baseUrl = "https://mcjbcustom.herokuapp.com/api/post"
         var uid = payload.metaData.uid;
 
-        if (metaDataObj.include) {
+        if (metaDataObj && metaDataObj.include) {
             payload.configurationArguments[action] = {
                 "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
             }
