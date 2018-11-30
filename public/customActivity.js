@@ -128,9 +128,9 @@ define([
                 };
 
                 if (metaDataObj.responseBody) {
-                    payload.configurationArguments[configEndpoint].responseBody = metaDataObj.responseBody;
+                    payload.configurationArguments[configEndpoint].body = metaDataObj.responseBody;
                 } else {
-                    delete payload.configurationArguments[configEndpoint].responseBody; 
+                    delete payload.configurationArguments[configEndpoint].body; 
                 }
 
             }  else {
