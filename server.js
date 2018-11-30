@@ -15,7 +15,12 @@ router.get('/results', function(req, res) {
 });
 
 router.get('/results/:uid', function(req, res) {
-	res.json(results[req.params.uid]);
+	if (results[req.param.uid]) {
+		res.json(results[req.params.uid]);
+		return;
+	}
+	
+	res.json([]);
 });
 
 router.get('/results/:uid/:action', function(req, res) {

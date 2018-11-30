@@ -7,19 +7,12 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
-    var currentStep = null;
-    var initialized = false;
-
-    var steps = [
-            {  "label": "Endpoint Config", "key": "step1" },
-        ];
-
+   
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     }
 
     function onGotoStep (step) {
-        // connection.trigger('gotoStep', step);  TODO: is this needed?
         connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
         connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
@@ -60,7 +53,6 @@ define([
       }
 
     function initialize(data) {
-        initialized = true;
         if (data) {
             payload = data;
         }
