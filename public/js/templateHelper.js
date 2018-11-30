@@ -36,7 +36,7 @@ define(['js/util'], function(Util) {
                 return;
             }
 
-            $("#include" + Util.upper(configEndpoint).attr('checked', 'checked');
+            $("#include" + Util.upper(configEndpoint)).attr('checked', 'checked');
             $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
             $("#" + configEndpoint + "StatusCode").val(payload.configurationArguments[configEndpoint].statusCode);
             $("#" + configEndpoint + "ResponseBody").val(payload.configurationArguments[configEndpoint].body);
