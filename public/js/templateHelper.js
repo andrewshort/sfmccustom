@@ -40,6 +40,46 @@ define(['js/util'], function(Util) {
             $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
             $("#" + configEndpoint + "StatusCode").val(payload.configurationArguments[configEndpoint].statusCode);
             $("#" + configEndpoint + "ResponseBody").val(payload.configurationArguments[configEndpoint].body);
+          },
+
+          configUpdate: function(endpoint, callback) {
+            var eventFunction;
+              (function(configEndpoint, callback) {
+                 eventFunction = function() {
+                    var includeDomId = "include" + Util.upper(configEndpoint);
+                    var statusCodeDomId = configEndpoint + "StatusCode";
+                    var responseBodyDomId = configEndpoint + "ResponseBody";
+                
+                    if ($("#" + includeDomId).is(":checked")) {
+                        $("#" + statusCodeDomId).removeAttr('disabled');
+                        $("#" + responseBodyDomId).removeAttr('disabled');
+            
+                        var statusCode = $("#" + statusCodeDomId).val();
+                        var responseBody = $("#" + responseBodyDomId).val();
+
+                        if (callback) {
+                            callback({
+                                configEndpoint: configEndpoint,
+                                statusCode: statusCode,
+                                body: responseBody,
+                                include: true
+                            });
+                        }
+                    } else {
+                        $("#" + statusCodeDomId).attr('disabled', 'disabled');
+                        $("#" + responseBodyDomId).attr('disabled', 'disabled');
+            
+                        if (callback) {
+                            callback({
+                                configEndpoint: configEndpoint,
+                                include: false
+                            });
+                        }
+                    }   
+                };
+              })(endpoint, callback);
+
+              return eventFunction;
           }
     };
   });
