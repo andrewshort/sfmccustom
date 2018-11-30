@@ -193,7 +193,7 @@ define([
         setConfigArguments(payload.metaData.unpublish, "unpublish");
         setConfigArguments(payload.metaData.stop, "stop");
         
-        payload['metaData'].isConfigured = true;
+        payload.metaData.isConfigured = true;
         connection.trigger('updateActivity', payload);
     }
 

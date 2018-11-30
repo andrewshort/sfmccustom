@@ -34,7 +34,7 @@ router.post('/post', function(req, res) {
 
 	var uid = req.query.uid;
 	if (!uid) {
-		res.status(400).send({ "message" : "uid is required"})
+		res.status(400).send({ "message" : "uid is required"});
 		return;
 	}
 
