@@ -113,7 +113,7 @@ define([
 
             if (metaDataObj && metaDataObj.include) {
                 payload.configurationArguments[configEndpoint] = {
-                    "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
+                    "url" : baseUrl + "?action=" + configEndpoint + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
                 };
             }  else {
                 delete payload.configurationArguments[configEndpoint];
