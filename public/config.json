@@ -4,27 +4,7 @@
     {
         "icon": "images/paren.png",
         "iconSmall": "images/paren.png",
-        "category": "message",
-        "save" : {
-            "include": true,
-            "statusCode" : 200
-        },
-        "validate" : {
-            "include": true,
-            "statusCode" : 200
-        },
-        "publish" : {
-            "include": true,
-            "statusCode" : 200
-        },
-        "unpublish" : {
-            "include": false,
-            "statusCode" : 200
-        },
-        "stop" : {
-            "include": false,
-            "statusCode" : 200
-        }
+        "category": "message"
     },
     "type": "Rest",
     "lang":
