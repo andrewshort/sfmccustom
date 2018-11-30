@@ -13,13 +13,13 @@ define([
     var getConfigTemplate = function(configProp) {
         var configPropLabel = configProp.charAt(0).toUpperCase() + configProp.slice(1);
         return `<div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Include ` + configPropLabel +  ` Endpoint?</label>
                             <input type="checkbox" class="form-control" id="include` + configPropLabel + `" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>` + configPropLabel + ` Response Status Code</label>
                             <select class="form-control" id="` + configProp + `StatusCode" disabled="disabled">
@@ -27,6 +27,12 @@ define([
                                 <option value="400">400</option>
                                 <option value="500">500</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Respond With</label>
+                            <textarea class="form-control" id="` + configProp + `ResponseBody"></textarea>
                         </div>
                     </div>
                 </div>`;
@@ -86,21 +92,26 @@ define([
             var metaDataUpdate = function() {
                 var includeDomId = "include" + configPropUpper;
                 var statusCodeDomId = configEndpoint + "StatusCode";
+                var responseBodyDomId = configEndpoint + "ResponseBody";
 
                 if (!payload.metaData[configEndpoint]) payload.metaData[configEndpoint] = {};
                     
                 payload.metaData[configEndpoint].include = $("#" + includeDomId).is(":checked");
                 payload.metaData[configEndpoint].statusCode = $("#" + statusCodeDomId).val();
+                payload.metaData[configEndpoint].responseBody = $("#" + responseBodyDomId).val();
         
                 if ($("#" + includeDomId).is(":checked")) {
                     $("#" + statusCodeDomId).removeAttr('disabled');
+                    $("#" + responseBodyDomId).removeAttr('disabled');
                 } else {
                     $("#" + statusCodeDomId).attr('disabled', 'disabled');
+                    $("#" + responseBodyDomId).removeAttr('disabled');
                 }        
             };
 
             $("#include" + configPropUpper).change(metaDataUpdate);
             $("#" + configEndpoint + "StatusCode").change(metaDataUpdate);
+            $("#" + configEndpoint + "ResponseBody").change(metaDataUpdate);
         });
     }
 
@@ -113,8 +124,15 @@ define([
 
             if (metaDataObj && metaDataObj.include) {
                 payload.configurationArguments[configEndpoint] = {
-                    "url" : baseUrl + "?action=" + configEndpoint + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
+                    "url" : baseUrl + "?action=" + configEndpoint + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0",
                 };
+
+                if (metaDataObj.responseBody) {
+                    payload.configurationArguments[configEndpoint].responseBody = metaDataObj.responseBody;
+                } else {
+                    delete payload.configurationArguments[configEndpoint].responseBody; 
+                }
+
             }  else {
                 delete payload.configurationArguments[configEndpoint];
             }
