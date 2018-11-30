@@ -64,8 +64,7 @@
         }
     },
     "wizardSteps": [
-    {  "label": "Publish", "key": "step1" },
-    {  "label": "Results", "key": "step3" }
+        {  "label": "Endpoint Config", "key": "step1" } 
     ],
     
     "userInterfaces":

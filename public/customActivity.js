@@ -11,67 +11,18 @@ define([
     var initialized = false;
 
     var steps = [
-        {  "label": "Publish", "key": "step1" },
-        //{  "label": "Execute", "key": "step2" },
-        {  "label": "Results", "key": "step3" }
+            {  "label": "Endpoint Config", "key": "step1" },
         ];
-
-    $(window).ready(onRender);
-
-    connection.on('initActivity', initialize);
-    connection.on('gotoStep', onGotoStep);
-    connection.on('clickedBack', onClickedBack);
-    connection.on('clickedNext', onClickedNext);
 
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     }
 
     function onGotoStep (step) {
-        showStep(step);
+        // connection.trigger('gotoStep', step);  TODO: is this needed?
+        connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
+        connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
-    }
-
-    function onClickedBack () {        
-        connection.trigger('prevStep');
-    }
-
-    function showStep(step, stepIndex) {
-        if (stepIndex && !step) {
-            step = steps[stepIndex-1];
-        }
-
-        if (!step && stepIndex == 0) {
-            step = steps[0];
-        }
-        
-        if( initialized ) {
-            if( !currentStep || ( step && currentStep.key !== step.key ) ) {
-                connection.trigger('gotoStep', step);
-            }    
-        }
-
-        currentStep = step;
-        
-        $('.step').hide();
-
-        switch(step.key) {
-            case 'step1':
-                $('#step1').show();
-                connection.trigger('updateButton', { button: 'next', enabled: true });
-                connection.trigger('updateButton', { button: 'back', visible: false });
-                break;
-            case 'step2':
-                $('#step2').show();
-                connection.trigger('updateButton', { button: 'next', enabled: true });
-                connection.trigger('updateButton', { button: 'back', visible: true });
-                break;
-            case 'step3':
-                $('#step3').show();
-                connection.trigger('updateButton', { button: 'back', visible: true });
-                connection.trigger('updateButton', { button: 'next', text: 'done', visible: true });
-                break;
-        }
     }
 
     function initForm(metaDataObj, includeDomId, statusCodeDomId) {
@@ -114,7 +65,8 @@ define([
             payload = data;
         }
 
-        if (!payload.metaData) payload.metaData = {};
+        payload.metaData = payload.metaData || {};
+        payload.arguments = payload.arguments || {};
 
         $("#resultsDiv").val('');
         if (!payload.metaData.uid) {
@@ -129,7 +81,6 @@ define([
                                 "useJWT": true
                             };
         } else {
-            showStep(null, 2);
             $.get('https://sfmccustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
                 
                 $("#resultsDiv").html('');
@@ -182,11 +133,6 @@ define([
     }
 
     function onClickedNext() {
-        if (!currentStep || currentStep.key != "step3") {
-            connection.trigger('nextStep');
-            return;
-        }
-
         setConfigArguments(payload.metaData.save, "save");
         setConfigArguments(payload.metaData.validate, "validate");
         setConfigArguments(payload.metaData.publish, "publish");
@@ -209,4 +155,24 @@ define([
             delete payload.configurationArguments[action];
         }
     }
+
+    (function(initFn) {
+        var inIframe = function() {
+            try {
+                return window.self !== window.top;
+            } catch (e) {
+                return true;
+            }
+        };
+
+        if (!inIframe()) {
+            initFn({});
+        }
+    })(initialize);
+
+    $(window).ready(onRender);
+
+    connection.on('initActivity', initialize);
+    connection.on('gotoStep', onGotoStep);
+    connection.on('clickedNext', onClickedNext);
 });
