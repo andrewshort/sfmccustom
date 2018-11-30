@@ -79,8 +79,8 @@ define([
             
             if (payload.metaData[configEndpoint] && payload.metaData[configEndpoint].include) {
                 $("#include" + configPropUpper).attr('checked', 'checked');
-                $("#" + configProp + "StatusCode").removeAttr('disabled');
-                $("#" + configProp + "StatusCode").val(metaDataObj.statusCode);
+                $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
+                $("#" + configEndpoint + "StatusCode").val(payload.metaData[configEndpoint].statusCode);
             }
 
             var metaDataUpdate = function() {
