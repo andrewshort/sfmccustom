@@ -74,7 +74,7 @@ define([
             payload.arguments.execute.url = "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid;
         } 
 
-        $.get(window.location.href + 'api/results/' + payload.metaData.uid, function(data) {
+        $.get(window.location.origin + '/api/results/' + payload.metaData.uid, function(data) {
             document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
         });
 
