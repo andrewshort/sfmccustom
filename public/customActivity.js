@@ -100,7 +100,7 @@ define([
             };
 
             $("#include" + configPropUpper).change(metaDataUpdate);
-            $("#" + configEndpoint + "saveStatusCode").change(metaDataUpdate);
+            $("#" + configEndpoint + "StatusCode").change(metaDataUpdate);
         });
     }
 
