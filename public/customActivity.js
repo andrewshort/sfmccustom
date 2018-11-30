@@ -21,6 +21,7 @@ define([
 
     function onGotoStep () {
         console.log('ongotostep'); // debugging to see if this is needed with only one step
+        
         connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
         connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
@@ -106,6 +107,6 @@ define([
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
-    connection.on('gotoStep', onGotoStep);
+    //connection.on('gotoStep', onGotoStep);
     connection.on('clickedNext', onClickedNext);
 });
