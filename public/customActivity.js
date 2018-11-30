@@ -9,6 +9,7 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var configEndpoints = ['save','validate','publish','unpublish','stop'];
+    var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
 
     var getConfigTemplate = function(configProp) {
         var configPropLabel = configProp.charAt(0).toUpperCase() + configProp.slice(1);
@@ -42,7 +43,7 @@ define([
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     }
 
-    function onGotoStep (step) {
+    function onGotoStep () {
         connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
         connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
@@ -65,6 +66,7 @@ define([
         }
 
         payload.metaData = payload.metaData || {};
+        payload.configurationArguments = payload.configurationArguments || {};
         payload.arguments = payload.arguments || {};
         payload.arguments.execute = payload.arguments.execute || {};
 
@@ -83,62 +85,51 @@ define([
 
             document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = getConfigTemplate(configEndpoint);
             
-            if (payload.metaData[configEndpoint] && payload.metaData[configEndpoint].include) {
+            if (payload.configurationArguments[configEndpoint]) {
                 $("#include" + configPropUpper).attr('checked', 'checked');
                 $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
-                $("#" + configEndpoint + "StatusCode").val(payload.metaData[configEndpoint].statusCode);
-                $("#" + configEndpoint + "ResponseBody").val(payload.metaData[configEndpoint].responseBody);
+                $("#" + configEndpoint + "StatusCode").val(payload.configurationArguments[configEndpoint].statusCode);
+                $("#" + configEndpoint + "ResponseBody").val(payload.configurationArguments[configEndpoint].body);
             }
 
-            var metaDataUpdate = function() {
-                var includeDomId = "include" + configPropUpper;
-                var statusCodeDomId = configEndpoint + "StatusCode";
-                var responseBodyDomId = configEndpoint + "ResponseBody";
-
-                if (!payload.metaData[configEndpoint]) payload.metaData[configEndpoint] = {};
-                    
-                payload.metaData[configEndpoint].include = $("#" + includeDomId).is(":checked");
-                payload.metaData[configEndpoint].statusCode = $("#" + statusCodeDomId).val();
-                payload.metaData[configEndpoint].responseBody = $("#" + responseBodyDomId).val();
-        
-                if ($("#" + includeDomId).is(":checked")) {
-                    $("#" + statusCodeDomId).removeAttr('disabled');
-                    $("#" + responseBodyDomId).removeAttr('disabled');
-                } else {
-                    $("#" + statusCodeDomId).attr('disabled', 'disabled');
-                    $("#" + responseBodyDomId).removeAttr('disabled');
-                }        
-            };
-
-            $("#include" + configPropUpper).change(metaDataUpdate);
-            $("#" + configEndpoint + "StatusCode").change(metaDataUpdate);
-            $("#" + configEndpoint + "ResponseBody").change(metaDataUpdate);
+            $("#include" + configPropUpper).change(configUpdate);
+            $("#" + configEndpoint + "StatusCode").change(configUpdate);
+            $("#" + configEndpoint + "ResponseBody").change(configUpdate);
         });
     }
 
-    function onClickedNext() {
+    var configUpdate = function() {
+        var includeDomId = "include" + configPropUpper;
+        var statusCodeDomId = configEndpoint + "StatusCode";
+        var responseBodyDomId = configEndpoint + "ResponseBody";
+        var uid = payload.metaData.uid;
+    
+        if ($("#" + includeDomId).is(":checked")) {
+            $("#" + statusCodeDomId).removeAttr('disabled');
+            $("#" + responseBodyDomId).removeAttr('disabled');
 
-        configEndpoints.forEach(function(configEndpoint) {
-            var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
-            var uid = payload.metaData.uid;
-            var metaDataObj = payload.metaData[configEndpoint];
+            payload.configurationArguments[configEndpoint] = payload.configurationArguments[configEndpoint] || {};
 
-            if (metaDataObj && metaDataObj.include) {
-                payload.configurationArguments[configEndpoint] = {
-                    "url" : baseUrl + "?action=" + configEndpoint + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0",
-                };
+            var statusCode = $("#" + statusCodeDomId).val();
+            var responseBody = $("#" + responseBodyDomId).val();
 
-                if (metaDataObj.responseBody) {
-                    payload.configurationArguments[configEndpoint].body = metaDataObj.responseBody;
-                } else {
-                    delete payload.configurationArguments[configEndpoint].body; 
-                }
+            payload.configurationArguments[configEndpoint].statusCode = statusCode;
+            payload.configurationArguments[configEndpoint].url = baseUrl + "?action=" + configEndpoint + "&uid=" + uid + "&returnStatusCode=" + statusCode + "&timeout=0";
 
-            }  else {
-                delete payload.configurationArguments[configEndpoint];
+            if (responseBody) {
+                payload.configurationArguments[configEndpoint].body = responseBody;
+            } else {
+                delete payload.configurationArguments[configEndpoint].body;
             }
-        });
-        
+        } else {
+            $("#" + statusCodeDomId).attr('disabled', 'disabled');
+            $("#" + responseBodyDomId).attr('disabled', 'disabled');
+
+            delete payload.configurationArguments[configEndpoint];
+        }        
+    };
+
+    function onClickedNext() {        
         payload.metaData.isConfigured = true;
         connection.trigger('updateActivity', payload);
     }
