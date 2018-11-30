@@ -26,6 +26,10 @@ define([], function() {
             } catch (e) {
                 return true;
             }
+          },
+
+          upper : function(s) {
+            return s.charAt(0).toUpperCase() + configEndpoint.slice(1);
           }
     };
   });

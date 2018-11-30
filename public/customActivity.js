@@ -22,7 +22,6 @@ define([
 
         Util.initPayload(payload);
 
-        $("#resultsDiv").html('');
         if (!payload.metaData.uid) {
             payload.metaData.uid = Util.uniqueID();
             payload.arguments.execute.url = "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid;
@@ -34,17 +33,11 @@ define([
 
         configEndpoints.forEach(function(configEndpoint) {
             document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = TemplateHelper.getConfigTemplate(configEndpoint);
-            var configPropUpper = configEndpoint.charAt(0).toUpperCase() + configEndpoint.slice(1);
 
-            if (payload.configurationArguments[configEndpoint]) {
-                $("#include" + configPropUpper).attr('checked', 'checked');
-                $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
-                $("#" + configEndpoint + "StatusCode").val(payload.configurationArguments[configEndpoint].statusCode);
-                $("#" + configEndpoint + "ResponseBody").val(payload.configurationArguments[configEndpoint].body);
-            }
+            TemplateHelper.updateTemplate(payload, configEndpoint);
 
             var configUpdate = function() {
-                var includeDomId = "include" + configPropUpper;
+                var includeDomId = "include" + Util.upper(configEndpoint);
                 var statusCodeDomId = configEndpoint + "StatusCode";
                 var responseBodyDomId = configEndpoint + "ResponseBody";
                 var uid = payload.metaData.uid;
@@ -74,7 +67,7 @@ define([
                 }        
             };
 
-            $("#include" + configPropUpper).change(configUpdate);
+            $("#include" + Util.upper(configPropUpper)).change(configUpdate);
             $("#" + configEndpoint + "StatusCode").change(configUpdate);
             $("#" + configEndpoint + "ResponseBody").change(configUpdate);
         });

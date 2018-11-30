@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
-define([], function() {
+define(['js/util'], function(Util) {
 
     return {
           getConfigTemplate : function(configProp) {
-            var configPropLabel = configProp.charAt(0).toUpperCase() + configProp.slice(1);
+            var configPropLabel = Util.upper(configProp);
             return `<div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -28,6 +28,18 @@ define([], function() {
                             </div>
                         </div>
                     </div>`;
+          },
+
+          updateTemplate : function(payload, configEndpoint) {
+
+            if (!payload.configurationArguments[configEndpoint]) {
+                return;
+            }
+
+            $("#include" + Util.upper(configEndpoint).attr('checked', 'checked');
+            $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
+            $("#" + configEndpoint + "StatusCode").val(payload.configurationArguments[configEndpoint].statusCode);
+            $("#" + configEndpoint + "ResponseBody").val(payload.configurationArguments[configEndpoint].body);
           }
     };
   });
