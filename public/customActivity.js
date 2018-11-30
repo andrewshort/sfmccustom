@@ -13,7 +13,7 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var configEndpoints = ['save','validate','publish','unpublish','stop'];
-    var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
+    var baseUrl = window.location.origin + "/api/post";
 
     function initialize(data) {
         if (data) {
@@ -24,7 +24,7 @@ define([
 
         if (!payload.metaData.uid) {
             payload.metaData.uid = Util.uniqueID();
-            payload.arguments.execute.url = "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid;
+            payload.arguments.execute.url = baseUrl + "?action=execute&uid=" + payload.metaData.uid;
         } 
 
         $.get(window.location.origin + '/api/results/' + payload.metaData.uid, function(data) {
