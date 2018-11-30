@@ -41,7 +41,7 @@
         {
             "inArguments": [],
             "outArguments": [{
-                "sampleOutputDate" : ""
+                "timestamp" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
             "useJWT": true

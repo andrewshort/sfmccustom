@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 define([
     'js/postmonger'
 ], function(
@@ -7,6 +8,29 @@ define([
 
     var connection = new Postmonger.Session();
     var payload = {};
+    var configEndpoints = ['save','validate','publish','unpublish','stop'];
+
+    var getConfigTemplate = function(configProp) {
+        var configPropLabel = configProp.charAt(0).toUpperCase() + configProp.slice(1);
+        return `<div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Include ` + configPropLabel +  ` Endpoint?</label>
+                            <input type="checkbox" class="form-control" id="include` + configPropLabel + `" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>` + configPropLabel + ` Response Status Code</label>
+                            <select class="form-control" id="` + configProp + `StatusCode" disabled="disabled">
+                                <option value="200" selected="selected">200</option>
+                                <option value="400">400</option>
+                                <option value="500">500</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>`;
+    };
    
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
@@ -16,29 +40,6 @@ define([
         connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
         connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
-    }
-
-    function initForm(metaDataObj, includeDomId, statusCodeDomId) {
-        if (!metaDataObj) return;
-
-        if (metaDataObj.include) {
-            $("#" + includeDomId).attr('checked', 'checked');
-            $("#" + statusCodeDomId).removeAttr('disabled');
-            $("#" + statusCodeDomId).val(metaDataObj.statusCode);
-        }
-    }
-
-    function metaDataUpdate(endpointProperty, includeDomId, statusCodeDomId) {
-        if (!payload.metaData[endpointProperty]) payload.metaData[endpointProperty] = {};
-            
-        payload.metaData[endpointProperty].include = $("#" + includeDomId).is(":checked");
-        payload.metaData[endpointProperty].statusCode = $("#" + statusCodeDomId).val();
-
-        if ($("#" + includeDomId).is(":checked")) {
-            $("#" + statusCodeDomId).removeAttr('disabled');
-        } else {
-            $("#" + statusCodeDomId).attr('disabled', 'disabled');
-        }        
     }
 
     function uniqueID(){
@@ -59,93 +60,68 @@ define([
 
         payload.metaData = payload.metaData || {};
         payload.arguments = payload.arguments || {};
+        payload.arguments.execute = payload.arguments.execute || {};
 
-        $("#resultsDiv").val('');
+        $("#resultsDiv").html('');
         if (!payload.metaData.uid) {
             payload.metaData.uid = uniqueID();
-            payload.arguments.execute = 
-                            {
-                                "inArguments": [],
-                                "outArguments": [{
-                                    "timestamp" : ""
-                                }],
-                                "url": "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
-                                "useJWT": true
-                            };
-        } else {
-            $.get('https://sfmccustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
-                
-                $("#resultsDiv").html('');
+            payload.arguments.execute.url = "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid;
+        } 
 
-                document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
-         
-            });
-        }
+        $.get(window.location.href + 'api/results/' + payload.metaData.uid, function(data) {
+            document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
+        });
 
-        initForm(payload.metaData.save, "includeSave", "saveStatusCode");
-        initForm(payload.metaData.validate, "includeValidate", "validateStatusCode");
-        initForm(payload.metaData.publish, "includePublish", "publishStatusCode");
-        initForm(payload.metaData.unpublish, "includeUnpublish", "unpublishStatusCode");
-        initForm(payload.metaData.stop, "includeStop", "stopStatusCode");
+        configEndpoints.forEach(function(configEndpoint) {
+            var configPropUpper = configEndpoint.charAt(0).toUpperCase() + configEndpoint.slice(1);
+
+            document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = getConfigTemplate(configEndpoint);
+            
+            if (payload.metaData[configEndpoint] && payload.metaData[configEndpoint].include) {
+                $("#include" + configPropUpper).attr('checked', 'checked');
+                $("#" + configProp + "StatusCode").removeAttr('disabled');
+                $("#" + configProp + "StatusCode").val(metaDataObj.statusCode);
+            }
+
+            var metaDataUpdate = function() {
+                var includeDomId = "include" + configPropUpper;
+                var statusCodeDomId = configEndpoint + "StatusCode";
+
+                if (!payload.metaData[configEndpoint]) payload.metaData[configEndpoint] = {};
+                    
+                payload.metaData[configEndpoint].include = $("#" + includeDomId).is(":checked");
+                payload.metaData[configEndpoint].statusCode = $("#" + statusCodeDomId).val();
         
-        $("#includeSave").change(function() {
-            metaDataUpdate("save", "includeSave", "saveStatusCode");
-        });
-        $("#saveStatusCode").change(function() {
-            metaDataUpdate("save", "includeSave", "saveStatusCode");
-        });
+                if ($("#" + includeDomId).is(":checked")) {
+                    $("#" + statusCodeDomId).removeAttr('disabled');
+                } else {
+                    $("#" + statusCodeDomId).attr('disabled', 'disabled');
+                }        
+            };
 
-        $("#includeValidate").change(function() {
-            metaDataUpdate("validate", "includeValidate", "validateStatusCode");
-        });
-        $("#validateStatusCode").change(function() {
-            metaDataUpdate("validate", "includeValidate", "validateStatusCode");
-        });
-
-        $("#includePublish").change(function() {
-            metaDataUpdate("publish", "includePublish", "publishStatusCode");
-        });
-        $("#publishStatusCode").change(function() {
-            metaDataUpdate("publish", "includePublish", "publishStatusCode");
-        });
-
-        $("#includeUnpublish").change(function() {
-            metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
-        });
-        $("#unpublishStatusCode").change(function() {
-            metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
-        });
-
-        $("#includeStop").change(function() {
-            metaDataUpdate("stop", "includeStop", "stopStatusCode");
-        });
-        $("#stopStatusCode").change(function() {
-            metaDataUpdate("stop", "includeStop", "stopStatusCode");
+            $("#include" + configPropUpper).change(metaDataUpdate);
+            $("#" + configEndpoint + "saveStatusCode").change(metaDataUpdate);
         });
     }
 
     function onClickedNext() {
-        setConfigArguments(payload.metaData.save, "save");
-        setConfigArguments(payload.metaData.validate, "validate");
-        setConfigArguments(payload.metaData.publish, "publish");
-        setConfigArguments(payload.metaData.unpublish, "unpublish");
-        setConfigArguments(payload.metaData.stop, "stop");
+
+        configEndpoints.forEach(function(configEndpoint) {
+            var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
+            var uid = payload.metaData.uid;
+            var metaDataObj = payload.metaData[configEndpoint];
+
+            if (metaDataObj && metaDataObj.include) {
+                payload.configurationArguments[configEndpoint] = {
+                    "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
+                };
+            }  else {
+                delete payload.configurationArguments[configEndpoint];
+            }
+        });
         
         payload.metaData.isConfigured = true;
         connection.trigger('updateActivity', payload);
-    }
-
-    function setConfigArguments(metaDataObj, action) {
-        var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
-        var uid = payload.metaData.uid;
-
-        if (metaDataObj && metaDataObj.include) {
-            payload.configurationArguments[action] = {
-                "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
-            };
-        }  else {
-            delete payload.configurationArguments[action];
-        }
     }
 
     (function(initFn) {
