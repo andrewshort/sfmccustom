@@ -1,8 +1,12 @@
 /*jshint esversion: 6 */
 define([
-    'js/postmonger'
+    'js/postmonger',
+    'js/util',
+    'js/templateHelper'
 ], function(
-    Postmonger
+    Postmonger,
+    Util,
+    TemplateHelper
 ) {
     'use strict';
 
@@ -10,69 +14,28 @@ define([
     var payload = {};
     var configEndpoints = ['save','validate','publish','unpublish','stop'];
     var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
-
-    var getConfigTemplate = function(configProp) {
-        var configPropLabel = configProp.charAt(0).toUpperCase() + configProp.slice(1);
-        return `<div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Include ` + configPropLabel +  ` Endpoint?</label>
-                            <input type="checkbox" class="form-control" id="include` + configPropLabel + `" />
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>` + configPropLabel + ` Response Status Code</label>
-                            <select class="form-control" id="` + configProp + `StatusCode" disabled="disabled">
-                                <option value="200" selected="selected">200</option>
-                                <option value="400">400</option>
-                                <option value="500">500</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Respond With</label>
-                            <textarea class="form-control" id="` + configProp + `ResponseBody"></textarea>
-                        </div>
-                    </div>
-                </div>`;
-    };
    
     function onRender() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     }
 
     function onGotoStep () {
+        console.log('ongotostep'); // debugging to see if this is needed with only one step
         connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
         connection.trigger('updateButton', { button: 'back', visible: false });
         connection.trigger('ready');
     }
-
-    function uniqueID(){
-        function chr4(){
-          return Math.random().toString(16).slice(-4);
-        }
-        return chr4() + chr4() +
-          '-' + chr4() +
-          '-' + chr4() +
-          '-' + chr4() +
-          '-' + chr4() + chr4() + chr4();
-      }
 
     function initialize(data) {
         if (data) {
             payload = data;
         }
 
-        payload.metaData = payload.metaData || {};
-        payload.configurationArguments = payload.configurationArguments || {};
-        payload.arguments = payload.arguments || {};
-        payload.arguments.execute = payload.arguments.execute || {};
+        Util.initPayload(payload);
 
         $("#resultsDiv").html('');
         if (!payload.metaData.uid) {
-            payload.metaData.uid = uniqueID();
+            payload.metaData.uid = Util.uniqueID();
             payload.arguments.execute.url = "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid;
         } 
 
@@ -81,7 +44,7 @@ define([
         });
 
         configEndpoints.forEach(function(configEndpoint) {
-            document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = getConfigTemplate(configEndpoint);
+            document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = TemplateHelper.getConfigTemplate(configEndpoint);
             var configPropUpper = configEndpoint.charAt(0).toUpperCase() + configEndpoint.slice(1);
 
             if (payload.configurationArguments[configEndpoint]) {
@@ -133,16 +96,9 @@ define([
         connection.trigger('updateActivity', payload);
     }
 
+    // This is for debugging locally when there is no initActivity postmonger signal
     (function(initFn) {
-        var inIframe = function() {
-            try {
-                return window.self !== window.top;
-            } catch (e) {
-                return true;
-            }
-        };
-
-        if (!inIframe()) {
+        if (!Util.inIFrame()) {
             initFn({});
         }
     })(initialize);
