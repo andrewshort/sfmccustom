@@ -32,7 +32,7 @@ define([
 
             TemplateHelper.updateTemplate(payload, configEndpoint);
 
-            var configUpdate = TemplateHelper.configUpdate(configEndpoint, PayloadHelper.updatePayloadFromUiObject);
+            var configUpdate = TemplateHelper.configUpdate(configEndpoint, PayloadHelper.updatePayloadFromUiObject(payload, baseUrl));
 
             $("#include" + Util.upper(configEndpoint)).change(configUpdate);
             $("#" + configEndpoint + "StatusCode").change(configUpdate);
