@@ -1,14 +1,14 @@
 var express = require('express');
 var server = express();
 var http = require('http');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 server.use('/', express.static(__dirname + '/public/'));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 var router = express.Router();
 
-var results = {}
+var results = {};
 
 router.get('/results', function(req, res) {
 	res.json(results);
@@ -66,9 +66,9 @@ router.post('/post', function(req, res) {
 			"sampleOutputDate" : sampleOutputDate.toISOString()
 		});
 	} else {
-		res.status(returnStatusCode).send({ "message" : "non successful"})
+		res.status(returnStatusCode).send({ "message" : "non successful"});
 	}
-})
+});
 
 server.use('/api', router);
 

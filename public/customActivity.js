@@ -42,7 +42,7 @@ define([
         }
 
         if (!step && stepIndex == 0) {
-            step = steps[0]
+            step = steps[0];
         }
         
         if( initialized ) {
@@ -127,7 +127,7 @@ define([
                                 }],
                                 "url": "https://sfmccustom.herokuapp.com/api/post?action=execute&uid=" + payload.metaData.uid,
                                 "useJWT": true
-                            }
+                            };
         } else {
             showStep(null, 2);
             $.get('https://sfmccustom.herokuapp.com/api/results/' + payload.metaData.uid, function(data) {
@@ -136,7 +136,7 @@ define([
 
                 document.getElementById("resultsDiv").appendChild(document.createElement('pre')).innerHTML = JSON.stringify(data, null, 4);    
          
-            })
+            });
         }
 
         initForm(payload.metaData.save, "includeSave", "saveStatusCode");
@@ -147,38 +147,38 @@ define([
         
         $("#includeSave").change(function() {
             metaDataUpdate("save", "includeSave", "saveStatusCode");
-        })
+        });
         $("#saveStatusCode").change(function() {
             metaDataUpdate("save", "includeSave", "saveStatusCode");
-        })
+        });
 
         $("#includeValidate").change(function() {
             metaDataUpdate("validate", "includeValidate", "validateStatusCode");
-        })
+        });
         $("#validateStatusCode").change(function() {
             metaDataUpdate("validate", "includeValidate", "validateStatusCode");
-        })
+        });
 
         $("#includePublish").change(function() {
             metaDataUpdate("publish", "includePublish", "publishStatusCode");
-        })
+        });
         $("#publishStatusCode").change(function() {
             metaDataUpdate("publish", "includePublish", "publishStatusCode");
-        })
+        });
 
         $("#includeUnpublish").change(function() {
             metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
-        })
+        });
         $("#unpublishStatusCode").change(function() {
             metaDataUpdate("unpublish", "includeUnpublish", "unpublishStatusCode");
-        })
+        });
 
         $("#includeStop").change(function() {
             metaDataUpdate("stop", "includeStop", "stopStatusCode");
-        })
+        });
         $("#stopStatusCode").change(function() {
             metaDataUpdate("stop", "includeStop", "stopStatusCode");
-        })
+        });
     }
 
     function onClickedNext() {
@@ -198,13 +198,13 @@ define([
     }
 
     function setConfigArguments(metaDataObj, action) {
-        var baseUrl = "https://sfmccustom.herokuapp.com/api/post"
+        var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
         var uid = payload.metaData.uid;
 
         if (metaDataObj && metaDataObj.include) {
             payload.configurationArguments[action] = {
                 "url" : baseUrl + "?action=" + action + "&uid=" + uid + "&returnStatusCode=" + metaDataObj.statusCode + "&timeout=0"
-            }
+            };
         }  else {
             delete payload.configurationArguments[action];
         }
