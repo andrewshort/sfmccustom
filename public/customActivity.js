@@ -67,7 +67,7 @@ define([
                 }        
             };
 
-            $("#include" + Util.upper(configPropUpper)).change(configUpdate);
+            $("#include" + Util.upper(configEndpoint)).change(configUpdate);
             $("#" + configEndpoint + "StatusCode").change(configUpdate);
             $("#" + configEndpoint + "ResponseBody").change(configUpdate);
         });
