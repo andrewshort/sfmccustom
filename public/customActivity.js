@@ -14,18 +14,6 @@ define([
     var payload = {};
     var configEndpoints = ['save','validate','publish','unpublish','stop'];
     var baseUrl = "https://sfmccustom.herokuapp.com/api/post";
-   
-    function onRender() {
-        connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
-    }
-
-    function onGotoStep () {
-        console.log('ongotostep'); // debugging to see if this is needed with only one step
-        
-        connection.trigger('updateButton', { button: 'next', text: 'done', enabled: true });
-        connection.trigger('updateButton', { button: 'back', visible: false });
-        connection.trigger('ready');
-    }
 
     function initialize(data) {
         if (data) {
@@ -104,9 +92,10 @@ define([
         }
     })(initialize);
 
-    $(window).ready(onRender);
+    $(window).ready(function() {
+        connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
+    });
 
     connection.on('initActivity', initialize);
-    //connection.on('gotoStep', onGotoStep);
     connection.on('clickedNext', onClickedNext);
 });
