@@ -82,7 +82,7 @@ define([
 
         configEndpoints.forEach(function(configEndpoint) {
             document.getElementById("configs").appendChild(document.createElement('div')).innerHTML = getConfigTemplate(configEndpoint);
-            var configPropUpper = configProp.charAt(0).toUpperCase() + configProp.slice(1);
+            var configPropUpper = configEndpoint.charAt(0).toUpperCase() + configEndpoint.slice(1);
 
             if (payload.configurationArguments[configEndpoint]) {
                 $("#include" + configPropUpper).attr('checked', 'checked');
