@@ -87,6 +87,7 @@ define([
                 $("#include" + configPropUpper).attr('checked', 'checked');
                 $("#" + configEndpoint + "StatusCode").removeAttr('disabled');
                 $("#" + configEndpoint + "StatusCode").val(payload.metaData[configEndpoint].statusCode);
+                $("#" + configEndpoint + "ResponseBody").val(payload.metaData[configEndpoint].responseBody);
             }
 
             var metaDataUpdate = function() {
