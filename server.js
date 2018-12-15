@@ -15,7 +15,7 @@ router.get('/results', function(req, res) {
 });
 
 router.get('/results/:uid', function(req, res) {
-	if (results[req.param.uid]) {
+	if (results[req.params.uid]) {
 		res.json(results[req.params.uid]);
 		return;
 	}
@@ -28,7 +28,8 @@ router.get('/results/:uid/:action', function(req, res) {
 });
 
 router.post('/post', function(req, res) {
-	
+	var respondWith = req.body || {}
+
 	var returnStatusCode = req.query.returnStatusCode;
 	if (!returnStatusCode) returnStatusCode = 200;
 
@@ -55,24 +56,15 @@ router.post('/post', function(req, res) {
 	var randomNumberDays = Math.floor(Math.random(0,10) * 10) + 1;
 	sampleOutputDate.setDate(sampleOutputDate.getDate() + randomNumberDays);
 
-	results[uid].push({
-		"action": action,
-		"timestampString" : now.toUTCString(), 
-		"timestamp" : now.toISOString(),
-		"sampleOutputDate" : sampleOutputDate.toISOString(),
-		"body" : req.body
-	});
+	respondWith.action = action;
+	respondWith.timestampString = now.toUTCString();
+	respondWith.timestamp = now.toISOString();
+	respondWith.sampleOutputDate = sampleOutputDate.toISOString();
+	respondWith.returnStatusCode = returnStatusCode;
+
+	results[uid].push(respondWith);
 	
-	if (parseInt(returnStatusCode) <= 299) {
-		res.status(returnStatusCode).send({
-			"action": action,
-			"timestampString" : now.toUTCString(), 
-			"timestamp" : now.toISOString(),
-			"sampleOutputDate" : sampleOutputDate.toISOString()
-		});
-	} else {
-		res.status(returnStatusCode).send({ "message" : "non successful"});
-	}
+	res.status(returnStatusCode).send(respondWith);
 });
 
 server.use('/api', router);
