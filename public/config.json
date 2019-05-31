@@ -50,6 +50,11 @@
     
     "userInterfaces":
     {
+        "configModal":
+        {
+            "fullscreen": true,
+            "url" : "https://sfmccustom.herokuapp.com/index.html?options=abc"
+        },
         "runningModal": {
             "url": "runningModal.html"
         },
