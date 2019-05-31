@@ -10,6 +10,6 @@ define([
     $(window).ready(onRender);
 
     function onRender() {
-        //connection.trigger('ready'); 
+        connection.trigger('ready'); 
     }
 });
