@@ -73,6 +73,8 @@ define([
             $(".step").hide();
             $("#" + currentStep).show();  
         } 
+
+        connection.trigger('ready');
     }
 
     // This is for debugging locally when there is no initActivity postmonger signal
