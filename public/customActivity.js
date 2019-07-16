@@ -46,8 +46,7 @@ define([
         });
 
         if (currentStep) {
-            $(".step").hide();
-            $("#" + currentStep).show();
+            showCurrentStep();
         }
     }    
 
@@ -56,6 +55,7 @@ define([
             $(".step").hide();
             $("#step2").show();
             currentStep = 'step2';
+            connection.trigger('nextStep');
         }  else {
             payload.metaData.isConfigured = true;
             connection.trigger('updateActivity', payload);
@@ -70,11 +70,28 @@ define([
 
         currentStep = step;
         if (initialized) {
-            $(".step").hide();
-            $("#" + currentStep).show();  
+              showCurrentStep();
         } 
 
         connection.trigger('ready');
+    }
+
+    function showCurrentStep() {
+        if (!currentStep) {
+            console.log('currentStep undefined');
+            return;
+        }
+
+        $(".step").hide();
+        $("#" + currentStep).show();
+        connection.trigger('updateButton', {
+            button: 'next',
+            enabled: Boolean(getMessage())
+        });
+        connection.trigger('updateButton', {
+            button: 'back',
+            visible: false
+        });
     }
 
     // This is for debugging locally when there is no initActivity postmonger signal
