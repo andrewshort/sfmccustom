@@ -15,11 +15,17 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var baseUrl = window.location.origin + "/api/post";
+    var currentStep = '';
+    var initialized = false;
 
     function initialize(data) {
         if (data) {
             payload = data;
         }
+
+        $(".step").hide();
+        $("#step1").show();
+        currentStep = 'step1';
 
         Util.initPayload(payload, baseUrl);
 
@@ -38,11 +44,35 @@ define([
             $("#" + configEndpoint + "StatusCode").change(configUpdate);
             $("#" + configEndpoint + "ResponseBody").change(configUpdate);
         });
+
+        if (currentStep) {
+            $(".step").hide();
+            $("#" + currentStep).show();
+        }
     }    
 
-    function onClickedNext() {        
-        payload.metaData.isConfigured = true;
-        connection.trigger('updateActivity', payload);
+    function onClickedNext() {     
+        if (currentStep === 'step1') {
+            $(".step").hide();
+            $("#step2").show();
+            currentStep = 'step2';
+        }  else {
+            payload.metaData.isConfigured = true;
+            connection.trigger('updateActivity', payload);
+        }        
+    }
+
+    function onGotoStep(step) {
+        if (!step)  {
+            console.log('step key not provided');
+            return;
+        }
+
+        currentStep = step;
+        if (initialized) {
+            $(".step").hide();
+            $("#" + currentStep).show();  
+        } 
     }
 
     // This is for debugging locally when there is no initActivity postmonger signal
@@ -58,4 +88,5 @@ define([
 
     connection.on('initActivity', initialize);
     connection.on('clickedNext', onClickedNext);
+    connection.on('gotoStep', onGotoStep);
 });

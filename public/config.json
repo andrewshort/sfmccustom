@@ -17,7 +17,11 @@
     {
         "execute":
         {
-            "inArguments": [],
+            "inArguments": [
+                {
+                    "returnStatusCode" : "200"
+                }
+            ],
             "outArguments": [{
                 "timestamp" : ""
             }],
@@ -45,7 +49,8 @@
         }
     },
     "wizardSteps": [
-        {  "label": "Endpoint Config", "key": "step1" } 
+        {  "label": "Workflow", "key": "step1" },
+        {  "label": "Execute", "key": "step2" } 
     ],
     
     "userInterfaces":
@@ -70,7 +75,7 @@
             {
                 "inArguments": [
                 {
-                    "myInArgument":
+                    "returnStatusCode":
                     {
                         "dataType": "Text",
                         "isNullable": false,

@@ -28,9 +28,14 @@ router.get('/results/:uid/:action', function(req, res) {
 });
 
 router.post('/post', function(req, res) {
-	var respondWith = req.body || {}
+	var respondWith = req.body || {};
 
 	var returnStatusCode = req.query.returnStatusCode;
+
+	if (!returnStatusCode) {
+		returnStatusCode = req.body.returnStatusCode;
+	}
+
 	if (!returnStatusCode) returnStatusCode = 200;
 
 	if (isNaN(returnStatusCode)) { 
