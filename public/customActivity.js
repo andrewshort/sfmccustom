@@ -45,9 +45,9 @@ define([
             $("#" + configEndpoint + "ResponseBody").change(configUpdate);
         });
 
-        $("#executeStatusCode").val(payload.arguments.execute.inArguments.returnStatusCode);
+        $("#executeStatusCode").val(payload.arguments.execute.inArguments[0].returnStatusCode);
         $("#executeStatusCode").change(function() {
-            payload.arguments.execute.inArguments.returnStatusCode = $(this).val();
+            payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
         });
 
         if (currentStep) {
