@@ -68,7 +68,7 @@ define([
     }
 
     function onClickedBack() {
-        $(".step").hide();
+            $(".step").hide();
             $("#step1").show();
             currentStep = 'step1';
             connection.trigger('prevStep');
@@ -96,13 +96,22 @@ define([
 
         $(".step").hide();
         $("#" + currentStep).show();
+
+
+        if (currentStep == 'step2') {
+            updateButton('next', 'Next', true);
+        } else {
+            updateButton('next', 'Done', true);
+        }
+        
+        updateButton('back', 'Back', currentStep == 'step2');
+    }
+
+    function updateButton(button, text, enabled) {
         connection.trigger('updateButton', {
-            button: 'next',
-            enabled: Boolean(getMessage())
-        });
-        connection.trigger('updateButton', {
-            button: 'back',
-            visible: false
+            button: button,
+            enabled: enabled,
+            text: text
         });
     }
 
