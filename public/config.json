@@ -19,7 +19,7 @@
         {
             "inArguments": [
                 {
-                    "returnStatusCode" : "200"
+                    "returnStatusCode" : "{{Event.EventKey.ReturnStatusCode}}"
                 }
             ],
             "outArguments": [{
