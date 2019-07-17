@@ -67,6 +67,13 @@ define([
         }        
     }
 
+    function onClickedBack() {
+        $(".step").hide();
+            $("#step1").show();
+            currentStep = 'step1';
+            connection.trigger('prevStep');
+    }
+
     function onGotoStep(step) {
         if (!step)  {
             console.log('step key not provided');
@@ -112,5 +119,6 @@ define([
 
     connection.on('initActivity', initialize);
     connection.on('clickedNext', onClickedNext);
+    connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 });
