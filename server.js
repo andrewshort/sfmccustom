@@ -73,6 +73,8 @@ router.post('/post', function(req, res) {
 	if (uid) {
 		results[uid].push(respondWith);
 	}
+
+	console.log(respondWith);
 	
 	res.status(returnStatusCode).send(respondWith);
 });
