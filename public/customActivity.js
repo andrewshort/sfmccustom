@@ -107,10 +107,10 @@ define([
         updateButton('back', 'Back', currentStep == 'step2');
     }
 
-    function updateButton(button, text, enabled) {
+    function updateButton(button, text, visible) {
         connection.trigger('updateButton', {
             button: button,
-            enabled: enabled,
+            visible: visible,
             text: text
         });
     }
