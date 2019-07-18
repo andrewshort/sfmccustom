@@ -81,6 +81,10 @@ define([
         }
 
         currentStep = step;
+        if (step.key) {
+            currentStep = step.key;
+        }
+
         if (initialized) {
               showCurrentStep();
         } 
