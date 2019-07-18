@@ -32,19 +32,9 @@
     "configurationArguments":
     {
         "applicationExtensionKey": "mcjbcustom",
-        "save":
-        {
-            "url": "https://sfmccustom.herokuapp.com/api/post?action=save",
-            "statusCode" : "200"
-        },
         "publish":
         {
             "url": "https://sfmccustom.herokuapp.com/api/post?action=publish",
-            "statusCode" : "200"
-        },
-        "validate":
-        {
-            "url": "https://sfmccustom.herokuapp.com/api/post?action=validate",
             "statusCode" : "200"
         }
     },

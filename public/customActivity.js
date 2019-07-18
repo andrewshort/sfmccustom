@@ -24,8 +24,8 @@ define([
         }
 
         $(".step").hide();
-        $("#step1").show();
-        currentStep = 'step1';
+        $("#step2").show();
+        currentStep = 'step2';
 
         Util.initPayload(payload, baseUrl);
 
