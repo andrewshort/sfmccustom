@@ -44,12 +44,15 @@ router.post('/post', function(req, res) {
 	}
 
 	var uid = req.query.uid;
+	
+	/*
 	if (!uid) {
 		res.status(400).send({ "message" : "uid is required"});
 		return;
 	}
+	*/
 
-	if (!results[uid]) { 
+	if (uid && !results[uid]) { 
 		results[uid] = [];
 	}
 
@@ -67,7 +70,9 @@ router.post('/post', function(req, res) {
 	respondWith.sampleOutputDate = sampleOutputDate.toISOString();
 	respondWith.returnStatusCode = returnStatusCode;
 
-	results[uid].push(respondWith);
+	if (uid) {
+		results[uid].push(respondWith);
+	}
 	
 	res.status(returnStatusCode).send(respondWith);
 });
