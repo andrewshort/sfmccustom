@@ -39,8 +39,8 @@
         }
     },
     "wizardSteps": [
-        {  "label": "Workflow", "key": "step1" },
-        {  "label": "Execute", "key": "step2" } 
+        {  "label": "Execute", "key": "step2" },
+        {  "label": "Workflow", "key": "step1" }
     ],
     
     "userInterfaces":
