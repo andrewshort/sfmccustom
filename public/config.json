@@ -81,6 +81,15 @@
                             "direction": "Out",
                             "access": "Visible"
                         }
+                    },
+                    {
+                        "contactCalls" :
+                        {
+                            "dataType": "Number",
+                            "isNullable": false,
+                            "direction": "Out",
+                            "access": "Visible"
+                        }
                     }
                 ]
             }
