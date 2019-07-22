@@ -28,7 +28,9 @@ router.get('/results/:uid/:action', function(req, res) {
 });
 
 router.post('/post', function(req, res) {
-	var respondWith = req.body || {};
+	console.log('=====REQEUST BODY====');
+	console.log(req.body);
+	var respondWith = {};
 
 	var returnStatusCode = req.query.returnStatusCode;
 
@@ -74,6 +76,7 @@ router.post('/post', function(req, res) {
 		results[uid].push(respondWith);
 	}
 
+	console.log('=======RESPONSE BODY=======');
 	console.log(respondWith);
 	
 	res.status(returnStatusCode).send(respondWith);
