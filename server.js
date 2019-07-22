@@ -38,6 +38,12 @@ router.post('/post', function(req, res) {
 		returnStatusCode = req.body.returnStatusCode;
 	}
 
+	if (!returnStatusCode) {
+		if (req.body.inArguments && req.body.inArguments.length > 0 && req.body.inArguments[0].returnStatusCode) {
+			returnStatusCode = req.body.inArguments[0].returnStatusCode;
+		}
+	}
+
 	if (!returnStatusCode) returnStatusCode = 200;
 
 	if (isNaN(returnStatusCode)) { 
