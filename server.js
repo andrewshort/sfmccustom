@@ -9,6 +9,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 var router = express.Router();
 
 var results = {};
+var contactCalls = {};
 
 router.get('/results', function(req, res) {
 	res.json(results);
@@ -30,6 +31,23 @@ router.get('/results/:uid/:action', function(req, res) {
 router.post('/post', function(req, res) {
 	console.log('=====REQEUST BODY====');
 	console.log(req.body);
+
+
+
+	var activityId = req.body.activityId;
+	var contactKey = req.body.keyValue;
+	var contactCalls = 0;
+
+	if (activityId && contactKey) {
+		var cacheKey = activityId + '-' + contactKey;
+		if (!contactCalls[cacheKey]) {
+			contactCalls[cacheKey] = 1;
+		} else {
+			contactCalls[cacheKey] = contactCalls[cacheKey] + 1; 
+		}
+		contactCalls = contactCalls[cacheKey];
+	}
+
 	var respondWith = {};
 
 	var returnStatusCode = req.query.returnStatusCode;
@@ -77,6 +95,7 @@ router.post('/post', function(req, res) {
 	respondWith.timestamp = now.toISOString();
 	respondWith.sampleOutputDate = sampleOutputDate.toISOString();
 	respondWith.returnStatusCode = returnStatusCode;
+	respondWith.contactCalls = contactCalls;
 
 	if (uid) {
 		results[uid].push(respondWith);
