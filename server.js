@@ -36,7 +36,7 @@ router.post('/post', function(req, res) {
 
 	var activityId = req.body.activityId;
 	var contactKey = req.body.keyValue;
-	var contactCalls = 0;
+	var contactCallCount = 0;
 
 	if (activityId && contactKey) {
 		var cacheKey = activityId + '-' + contactKey;
@@ -45,7 +45,7 @@ router.post('/post', function(req, res) {
 		} else {
 			contactCalls[cacheKey] = contactCalls[cacheKey] + 1; 
 		}
-		contactCalls = contactCalls[cacheKey];
+		contactCallCount = contactCalls[cacheKey];
 	}
 
 	var respondWith = {};
@@ -95,7 +95,7 @@ router.post('/post', function(req, res) {
 	respondWith.timestamp = now.toISOString();
 	respondWith.sampleOutputDate = sampleOutputDate.toISOString();
 	respondWith.returnStatusCode = returnStatusCode;
-	respondWith.contactCalls = contactCalls;
+	respondWith.contactCalls = contactCallCount;
 
 	if (uid) {
 		results[uid].push(respondWith);
