@@ -37,6 +37,7 @@ router.post('/post', function(req, res) {
 	var activityId = req.body.activityId;
 	var contactKey = req.body.keyValue;
 	var contactCallCount = 0;
+	var delay = 0;
 
 	if (activityId && contactKey) {
 		var cacheKey = activityId + '-' + contactKey;
@@ -59,6 +60,18 @@ router.post('/post', function(req, res) {
 	if (!returnStatusCode) {
 		if (req.body.inArguments && req.body.inArguments.length > 0 && req.body.inArguments[0].returnStatusCode) {
 			returnStatusCode = req.body.inArguments[0].returnStatusCode;
+		}
+	}
+
+	if (delay === 0) {
+		if (req.query.delay && parseInt(req.query.delay) > 0) {
+			delay = parseInt(req.query.delay);
+		}
+	}
+
+	if (delay === 0) {
+		if (req.body.inArguments && req.body.inArguments.length > 0 && req.body.inArguments[1].delay) {
+			delay = parseInt(req.body.inArguments[1].delay);
 		}
 	}
 
@@ -104,7 +117,13 @@ router.post('/post', function(req, res) {
 	console.log('=======RESPONSE BODY=======');
 	console.log(respondWith);
 	
-	res.status(returnStatusCode).send(respondWith);
+	if (delay <= 0) {
+		res.status(returnStatusCode).send(respondWith);
+	} else {
+		setTimeout(function() {
+			res.status(returnStatusCode).send(respondWith);
+		}, delay);
+	}
 });
 
 server.use('/api', router);
