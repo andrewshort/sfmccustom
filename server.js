@@ -121,6 +121,7 @@ router.post('/post', function(req, res) {
 		res.status(returnStatusCode).send(respondWith);
 	} else {
 		setTimeout(function() {
+			respondWith.delay = delay;
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}

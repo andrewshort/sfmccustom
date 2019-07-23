@@ -71,6 +71,14 @@
                         "isNullable": false,
                         "direction": "in"
                     }
+                },
+                {
+                    "delay":
+                    {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "in"
+                    }
                 }],
                 "outArguments": [
                     {
