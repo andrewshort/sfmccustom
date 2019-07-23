@@ -128,7 +128,7 @@ router.post('/post', function(req, res) {
 		res.status(returnStatusCode).send(respondWith);
 	} else {
 		setTimeout(function() {
-			
+			respondWith.endResponse = new Date().toISOString();
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}
