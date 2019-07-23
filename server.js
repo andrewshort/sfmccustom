@@ -109,6 +109,7 @@ router.post('/post', function(req, res) {
 	respondWith.sampleOutputDate = sampleOutputDate.toISOString();
 	respondWith.returnStatusCode = returnStatusCode;
 	respondWith.contactCalls = contactCallCount;
+	respondWith.delay = delay;
 
 	if (uid) {
 		results[uid].push(respondWith);
@@ -121,7 +122,7 @@ router.post('/post', function(req, res) {
 		res.status(returnStatusCode).send(respondWith);
 	} else {
 		setTimeout(function() {
-			respondWith.delay = delay;
+			
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}
