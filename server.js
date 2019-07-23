@@ -82,6 +82,12 @@ router.post('/post', function(req, res) {
 		return;
 	}
 
+	// always succeed after first try for now
+	if (contactCallCount > 1) {
+		returnStatusCode = 200;
+		delay = 0;
+	}
+
 	var uid = req.query.uid;
 	
 	/*
