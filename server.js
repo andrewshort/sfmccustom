@@ -121,14 +121,17 @@ router.post('/post', function(req, res) {
 		results[uid].push(respondWith);
 	}
 
-	console.log('=======RESPONSE BODY=======');
-	console.log(respondWith);
+	
 	
 	if (delay <= 0) {
+		console.log('=======RESPONSE BODY=======');
+		console.log(respondWith);
 		res.status(returnStatusCode).send(respondWith);
 	} else {
 		setTimeout(function() {
+			console.log('=======RESPONSE BODY=======');
 			respondWith.endResponse = new Date().toISOString();
+			console.log(respondWith);
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}
