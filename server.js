@@ -43,12 +43,16 @@ router.post('/post', function(req, res) {
 	var contactCallCount = 0;
 	var delay = 0;
 
+	var cacheKey = '';
+
 	if (activityId && contactKey) {
-		var cacheKey = activityId + '-' + contactKey;
+		cacheKey = activityId + '-' + contactKey;
 		if (!contactCalls[cacheKey]) {
-			contactCalls[cacheKey] = 1;
+			contactCalls[cacheKey] = {
+				count: 1
+			};
 		} else {
-			contactCalls[cacheKey] = contactCalls[cacheKey] + 1; 
+			contactCalls[cacheKey].count = contactCalls[cacheKey].count + 1; 
 		}
 		contactCallCount = contactCalls[cacheKey];
 	}
@@ -130,12 +134,19 @@ router.post('/post', function(req, res) {
 	if (delay <= 0) {
 		console.log('=======RESPONSE BODY=======');
 		console.log(respondWith);
+
+		if (cacheKey && contactCalls[cacheKey]) {
+			contactCalls[cacheKey].response = respondWith;
+		}
 		res.status(returnStatusCode).send(respondWith);
 	} else {
 		setTimeout(function() {
 			console.log('=======RESPONSE BODY=======');
 			respondWith.endResponse = new Date().toISOString();
 			console.log(respondWith);
+			if (cacheKey && contactCalls[cacheKey]) {
+				contactCalls[cacheKey].response = respondWith;
+			}
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}
