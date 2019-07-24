@@ -91,7 +91,7 @@ router.post('/post', function(req, res) {
 	}
 
 	// always succeed after first try for now
-	if (contactCallCount > 1) {
+	if (contactCallCount > 5) {
 		returnStatusCode = 200;
 		delay = 0;
 	}
