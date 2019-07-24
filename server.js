@@ -24,6 +24,10 @@ router.get('/results/:uid', function(req, res) {
 	res.json([]);
 });
 
+router.get('/contactcalls', function(req, res) {
+	res.json(contactCalls);
+});
+
 router.get('/results/:uid/:action', function(req, res) {
 	res.json(results[req.params.uid]); // TODO: filter by action
 });
