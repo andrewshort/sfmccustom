@@ -54,7 +54,7 @@ router.post('/post', function(req, res) {
 		} else {
 			contactCalls[cacheKey].count = contactCalls[cacheKey].count + 1; 
 		}
-		contactCallCount = contactCalls[cacheKey];
+		contactCallCount = contactCalls[cacheKey].count;
 	}
 
 	var respondWith = {};
