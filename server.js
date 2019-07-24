@@ -49,11 +49,17 @@ router.post('/post', function(req, res) {
 		cacheKey = activityId + '-' + contactKey;
 		if (!contactCalls[cacheKey]) {
 			contactCalls[cacheKey] = {
-				count: 1
+				count: 1,
+				cacheCreated: new Date().toUTCString(),
+				callItems: []
 			};
 		} else {
-			contactCalls[cacheKey].count = contactCalls[cacheKey].count + 1; 
+			contactCalls[cacheKey].count = contactCalls[cacheKey].count + 1;
+			contactCalls[cacheKey].cacheUpdated = new Date().toUTCString();
 		}
+
+		
+
 		contactCallCount = contactCalls[cacheKey].count;
 	}
 
@@ -136,7 +142,8 @@ router.post('/post', function(req, res) {
 		console.log(respondWith);
 
 		if (cacheKey && contactCalls[cacheKey]) {
-			contactCalls[cacheKey].response = respondWith;
+			contactCalls[cacheKey].lastResponse = respondWith;
+			contactCalls[cacheKey].callItems.push(respondWith);
 		}
 		res.status(returnStatusCode).send(respondWith);
 	} else {
@@ -145,7 +152,8 @@ router.post('/post', function(req, res) {
 			respondWith.endResponse = new Date().toISOString();
 			console.log(respondWith);
 			if (cacheKey && contactCalls[cacheKey]) {
-				contactCalls[cacheKey].response = respondWith;
+				contactCalls[cacheKey].lastResponse = respondWith;
+				contactCalls[cacheKey].callItems.push(respondWith);
 			}
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
