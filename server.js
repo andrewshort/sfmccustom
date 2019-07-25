@@ -28,6 +28,11 @@ router.get('/contactcalls', function(req, res) {
 	res.json(contactCalls);
 });
 
+router.get('/contactcalls/clear', function(req, res) {
+	contactCalls = {};
+	res.redirect('/contactcalls');
+});
+
 router.get('/results/:uid/:action', function(req, res) {
 	res.json(results[req.params.uid]); // TODO: filter by action
 });
