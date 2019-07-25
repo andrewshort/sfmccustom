@@ -30,7 +30,7 @@ router.get('/contactcalls', function(req, res) {
 
 router.get('/contactcalls/clear', function(req, res) {
 	contactCalls = {};
-	res.redirect('/contactcalls');
+	res.redirect('/api/contactcalls');
 });
 
 router.get('/results/:uid/:action', function(req, res) {
