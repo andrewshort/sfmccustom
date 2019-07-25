@@ -20,6 +20,9 @@
             "inArguments": [
                 {
                     "returnStatusCode" : "{{Event.EventKey.ReturnStatusCode}}"
+                },
+                {
+                    "delay" : "0"
                 }
             ],
             "outArguments": [{
