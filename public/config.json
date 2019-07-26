@@ -4,7 +4,7 @@
     {
         "category": "message"
     },
-    "type": "Rest",
+    "type": "RESTDECISION",
     "lang":
     {
         "en-US":
@@ -60,6 +60,16 @@
             "url": "runningHover.html"
         }
     },
+    "outcomes" : [ {
+        "arguments" : {
+            "branchResult" : "branchResult-1"
+        }
+    },
+    {
+        "arguments" : {
+            "branchResult" : "branchResult-2"
+        }
+    }],
     "schema":
     {
         "arguments":
