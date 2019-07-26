@@ -135,6 +135,11 @@ router.post('/post', function(req, res) {
 	respondWith.returnStatusCode = returnStatusCode;
 	respondWith.contactCalls = contactCallCount;
 	respondWith.delay = delay;
+	respondWith.branchResult = 'branchResult-1';
+
+	if (cacheKey && cacheKey.endsWith('0')) {
+		respondWith.branchResult = 'branchResult-2';
+	}
 
 	if (uid) {
 		results[uid].push(respondWith);
