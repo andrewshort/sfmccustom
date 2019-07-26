@@ -139,9 +139,9 @@ router.post('/post', function(req, res) {
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
-		returnStatusCode = 500;
-		respondWith.returnStatusCode = returnStatusCode;
-		delete respondWith.sampleOutputDate;
+		//returnStatusCode = 500;
+		//respondWith.returnStatusCode = returnStatusCode;
+		//delete respondWith.sampleOutputDate;
 	}
 
 	if (uid) {
