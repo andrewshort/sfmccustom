@@ -4,7 +4,7 @@
     {
         "category": "message"
     },
-    "type": "RESTDECISION",
+    "type": "REST",
     "lang":
     {
         "en-US":
@@ -63,11 +63,6 @@
     "outcomes" : [ {
         "arguments" : {
             "branchResult" : "branchResult-1"
-        }
-    },
-    {
-        "arguments" : {
-            "branchResult" : "branchResult-2"
         }
     }],
     "schema":
