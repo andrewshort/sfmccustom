@@ -139,6 +139,7 @@ router.post('/post', function(req, res) {
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
+		var x = 1 / 0; // intentionally hard fail one in ten contacts
 	}
 
 	if (uid) {
