@@ -23,14 +23,20 @@ router.use(function(req, res, next) {
 		console.log(data);
 		req.rawBody = data;
 
+		
 		if (data && data.length == 256) {
 			console.log('parsing data from middleware');
 			req.body = JSON.parse(jwt.decode(data, ''));
 
 		} else {
 			console.log('JSON parse raw data');
-			req.body = JSON.parse(data);
+			if (data) {
+				try {
+					req.body = JSON.parse(data);
+				} catch(e) {}
+			}
 		}
+		
 		
 		next();
 	});
