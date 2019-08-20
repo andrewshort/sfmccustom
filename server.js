@@ -2,19 +2,31 @@ var express = require('express');
 var server = express();
 var http = require('http');
 var bodyParser = require('body-parser');
+var jwt = require('jwt-simple');
 server.use('/', express.static(__dirname + '/public/'));
 //server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.use(function(req, res, next) {
 	var data = "";
-	req.on('data', function(chunk){ data += chunk});
+	req.on('data', function(chunk){ 
+		data += chunk;
+	});
+
 	req.on('end', function(){
 		console.log('data from middleware');
 		console.log(data);
 		req.rawBody = data;
 
-		//req.jsonBody = JSON.parse(data);
+		if (data && data.length == 256) {
+			console.log('parsing data from middleware');
+			req.body = JSON.parse(jwt.decode(data, ''));
+
+		} else {
+			console.log('JSON parse raw data');
+			req.body = JSON.parse(data);
+		}
+		
 		next();
 	});
 });
