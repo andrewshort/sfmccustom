@@ -12,6 +12,6 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "4.1.1"
+    "node": "8.11.3"
   }
 }
