@@ -31,7 +31,9 @@ router.use(function(req, res, next) {
 			} catch(e) {
 				console.log(e.toString());
 				try {
-					var decoded = jwt.decode(data, 'n40eqnovcajvyw5wdbgdil0vt0ds1nxykamqcnxezbqtqsyifvi35aey3gt1dxxohidozhvrtqbxhg12khqeeylxygm1uwwdhfopgn21mgevadcfh2j50aef3d3mugu5d0kxu0shpjn4tm0yfx1rvnmicxpkrxgszwqkpxftkcgv3m4k3dpmo1h5djrcnqv5t3hfz1zro1t5ldl02gdzswyihp5rwso5dzuy4hpyyulisbcjumfziieeshxejmz');
+					//var customerKey = 'n40eqnovcajvyw5wdbgdil0vt0ds1nxykamqcnxezbqtqsyifvi35aey3gt1dxxohidozhvrtqbxhg12khqeeylxygm1uwwdhfopgn21mgevadcfh2j50aef3d3mugu5d0kxu0shpjn4tm0yfx1rvnmicxpkrxgszwqkpxftkcgv3m4k3dpmo1h5djrcnqv5t3hfz1zro1t5ldl02gdzswyihp5rwso5dzuy4hpyyulisbcjumfziieeshxejmz';
+					var customerKey = 'my-signing-key';
+					var decoded = jwt.decode(data, customerKey);
 					console.log('decoded');
 					console.log(decoded);
 					req.body = decoded;
