@@ -3,8 +3,21 @@ var server = express();
 var http = require('http');
 var bodyParser = require('body-parser');
 server.use('/', express.static(__dirname + '/public/'));
-server.use(bodyParser.json());
+//server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+
+server.use(function(req, res, next) {
+	var data = "";
+	req.on('data', function(chunk){ data += chunk});
+	req.on('end', function(){
+		console.log('data from middleware');
+		console.log(data);
+		req.rawBody = data;
+
+		//req.jsonBody = JSON.parse(data);
+		next();
+	});
+});
 
 var router = express.Router();
 
@@ -38,6 +51,10 @@ router.get('/results/:uid/:action', function(req, res) {
 });
 
 router.post('/post', function(req, res) {
+
+	console.log('---- RAW BODY-----');
+	console.log(req.rawBody);
+
 	console.log('=====REQEUST BODY====');
 	console.log(req.body);
 
