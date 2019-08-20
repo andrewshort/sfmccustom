@@ -7,7 +7,12 @@ server.use('/', express.static(__dirname + '/public/'));
 //server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-server.use(function(req, res, next) {
+var router = express.Router();
+
+var results = {};
+var contactCalls = {};
+
+router.use(function(req, res, next) {
 	var data = "";
 	req.on('data', function(chunk){ 
 		data += chunk;
@@ -30,11 +35,6 @@ server.use(function(req, res, next) {
 		next();
 	});
 });
-
-var router = express.Router();
-
-var results = {};
-var contactCalls = {};
 
 router.get('/results', function(req, res) {
 	res.json(results);
