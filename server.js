@@ -15,28 +15,31 @@ var contactCalls = {};
 router.use(function(req, res, next) {
 	var data = "";
 	req.on('data', function(chunk){ 
+		console.log('data event');
 		data += chunk;
 	});
 
 	req.on('end', function(){
 		console.log('data from middleware');
 		console.log(data);
+		console.log(data.length);
 		req.rawBody = data;
 
-		
-		if (data && data.length == 256) {
-			console.log('parsing data from middleware');
-			req.body = JSON.parse(jwt.decode(data, ''));
-
-		} else {
-			console.log('JSON parse raw data');
-			if (data) {
+		if (data) {
+			try {
+				req.body = JSON.parse(data);
+			} catch(e) {
+				console.log(e.toString());
 				try {
-					req.body = JSON.parse(data);
-				} catch(e) {}
+					var decoded = jwt.decode(data, 'n40eqnovcajvyw5wdbgdil0vt0ds1nxykamqcnxezbqtqsyifvi35aey3gt1dxxohidozhvrtqbxhg12khqeeylxygm1uwwdhfopgn21mgevadcfh2j50aef3d3mugu5d0kxu0shpjn4tm0yfx1rvnmicxpkrxgszwqkpxftkcgv3m4k3dpmo1h5djrcnqv5t3hfz1zro1t5ldl02gdzswyihp5rwso5dzuy4hpyyulisbcjumfziieeshxejmz');
+					console.log('decoded');
+					console.log(decoded);
+					req.body = decoded;
+				} catch(e) {
+					console.log(e.toString());
+				}
 			}
-		}
-		
+		}	
 		
 		next();
 	});
@@ -210,4 +213,4 @@ router.post('/post', function(req, res) {
 
 server.use('/api', router);
 
-server.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT || 5002);
