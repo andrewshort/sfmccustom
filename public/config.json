@@ -4,6 +4,7 @@
     {
         "category": "message"
     },
+    "type": "REST",
     "lang":
     {
         "en-US":
