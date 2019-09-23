@@ -20,9 +20,6 @@ router.use(function(req, res, next) {
 	});
 
 	req.on('end', function(){
-		console.log('data from middleware');
-		console.log(data);
-		console.log(data.length);
 		req.rawBody = data;
 
 		if (data) {
@@ -31,11 +28,8 @@ router.use(function(req, res, next) {
 			} catch(e) {
 				console.log(e.toString());
 				try {
-					//var customerKey = 'n40eqnovcajvyw5wdbgdil0vt0ds1nxykamqcnxezbqtqsyifvi35aey3gt1dxxohidozhvrtqbxhg12khqeeylxygm1uwwdhfopgn21mgevadcfh2j50aef3d3mugu5d0kxu0shpjn4tm0yfx1rvnmicxpkrxgszwqkpxftkcgv3m4k3dpmo1h5djrcnqv5t3hfz1zro1t5ldl02gdzswyihp5rwso5dzuy4hpyyulisbcjumfziieeshxejmz';
 					var customerKey = 'my-signing-key';
 					var decoded = jwt.decode(data, customerKey);
-					console.log('decoded');
-					console.log(decoded);
 					req.body = decoded;
 				} catch(e) {
 					console.log(e.toString());
@@ -73,15 +67,16 @@ router.get('/results/:uid/:action', function(req, res) {
 	res.json(results[req.params.uid]); // TODO: filter by action
 });
 
-router.post('/post', function(req, res) {
+router.post('/token', function(req, res) {
+	console.log(req.body);
 
-	console.log('---- RAW BODY-----');
-	console.log(req.rawBody);
+	res.json("1VRTKFVSXiIlqgyJvvWg56Z1");
+});
+
+router.post('/post', function(req, res) {
 
 	console.log('=====REQEUST BODY====');
 	console.log(req.body);
-
-
 
 	var activityId = req.body.activityId;
 	var contactKey = req.body.keyValue;
