@@ -64,7 +64,6 @@ define([
                     securityContextKey: secKey
                 }
             }
-            payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
         });
 
         if (currentStep) {
