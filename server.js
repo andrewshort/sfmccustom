@@ -4,7 +4,7 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var jwt = require('jwt-simple');
 server.use('/', express.static(__dirname + '/public/'));
-//server.use(bodyParser.json());
+server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 var router = express.Router();
@@ -12,6 +12,7 @@ var router = express.Router();
 var results = {};
 var contactCalls = {};
 
+/*
 router.use(function(req, res, next) {
 	var data = "";
 	req.on('data', function(chunk){ 
@@ -40,6 +41,7 @@ router.use(function(req, res, next) {
 		next();
 	});
 });
+*/
 
 router.get('/results', function(req, res) {
 	res.json(results);
