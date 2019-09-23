@@ -83,6 +83,8 @@ router.post('/post', function(req, res) {
 
 	console.log('=====REQEUST BODY====');
 	console.log(req.body);
+	console.log('=====HEADERS====');
+	console.log(JSON.stringify(req.headers));
 
 	var activityId = req.body.activityId;
 	var contactKey = req.body.keyValue;
