@@ -50,6 +50,19 @@ define([
             payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
         });
 
+        $("#securityContextKey").change(function() {
+            var secKey = $(this).val();
+            if (secKey === '') {
+                delete payload.arguments.execute.securityOptions;
+            } else {
+                payload.arguments.execute.securityOptions = {
+                    securityType: "securityContext",
+                    securityContextKey: secKey
+                }
+            }
+            payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
+        });
+
         if (currentStep) {
             showCurrentStep();
         }
