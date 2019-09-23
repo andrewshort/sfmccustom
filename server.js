@@ -72,7 +72,11 @@ router.get('/results/:uid/:action', function(req, res) {
 router.post('/token', function(req, res) {
 	console.log(req.body);
 
-	res.json("1VRTKFVSXiIlqgyJvvWg56Z1");
+	res.json({
+		"access_token" : "1VRTKFVSXiIlqgyJvvWg56Z1",
+		"token_type" : "bearer",
+		"expires_in" : 300
+	});
 });
 
 router.post('/post', function(req, res) {
