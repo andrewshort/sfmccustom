@@ -50,6 +50,10 @@ define([
             payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
         });
 
+        var executeObj = payload.arguments.execute;
+        if (executeObj && executeObj.securityOptions && executeObj.securityOptions.securityContextKey) {
+            $("#securityContextKey").val(executeObj.securityOptions.securityContextKey);    
+        }
         $("#securityContextKey").change(function() {
             var secKey = $(this).val();
             if (secKey === '') {
