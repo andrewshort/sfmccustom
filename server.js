@@ -71,7 +71,8 @@ router.get('/results/:uid/:action', function(req, res) {
 
 router.post('/token', function(req, res) {
 	console.log(req.body);
-
+	console.log(JSON.stringify(req.headers));
+	
 	res.json({
 		"access_token" : "1VRTKFVSXiIlqgyJvvWg56Z1",
 		"token_type" : "bearer",
