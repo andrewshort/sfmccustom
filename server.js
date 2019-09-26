@@ -182,6 +182,7 @@ router.post('/post', function(req, res) {
 	respondWith.branchResult = 'branchResult-1';
 	respondWith.reqip = req.ip;
 	respondWith.remoteAddress = req.connection.remoteAddress;
+	respondWith.xforwardedfor = req.headers["x-forwarded-for"];
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
