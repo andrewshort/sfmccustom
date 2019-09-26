@@ -11,6 +11,7 @@ var router = express.Router();
 
 var results = {};
 var contactCalls = {};
+var xforwardedfor = {};
 
 /*
 router.use(function(req, res, next) {
@@ -56,6 +57,15 @@ router.get('/results/:uid', function(req, res) {
 	res.json([]);
 });
 
+router.get('/xforwardedfor', function(req, res) {
+	res.json(xforwardedfor);
+});
+
+router.get('/xforwardedfor/clear', function(req, res) {
+	xforwardedfor = {};
+	res.redirect('/api/xforwardedfor');
+});
+
 router.get('/contactcalls', function(req, res) {
 	res.json(contactCalls);
 });
@@ -94,6 +104,20 @@ router.post('/post', function(req, res) {
 
 	var cacheKey = '';
 
+	if (req.headers["x-forwarded-for"]) {
+		var key = req.headers["x-forwarded-for"];
+
+		if (!xforwardedfor[key]) {
+			xforwardedfor[key] = {
+				count: 1,
+				created: new Date().toUTCString()
+			};
+		} else {
+			xforwardedfor[key].count = xforwardedfor[key].count + 1;
+			xforwardedfor[key].updated = new Date().toUTCString();
+		}
+	}
+	
 	if (activityId && contactKey) {
 		cacheKey = activityId + '-' + contactKey;
 		if (!contactCalls[cacheKey]) {
