@@ -72,7 +72,7 @@ router.get('/results/:uid/:action', function(req, res) {
 router.post('/token', function(req, res) {
 	console.log(req.body);
 	console.log(JSON.stringify(req.headers));
-	
+
 	res.json({
 		"access_token" : "1VRTKFVSXiIlqgyJvvWg56Z1",
 		"token_type" : "bearer",
@@ -180,6 +180,8 @@ router.post('/post', function(req, res) {
 	respondWith.contactCalls = contactCallCount;
 	respondWith.delay = delay;
 	respondWith.branchResult = 'branchResult-1';
+	respondWith.reqip = req.ip;
+	respondWith.remoteAddress = req.connection.remoteAddress;
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
