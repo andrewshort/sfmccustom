@@ -29,7 +29,8 @@
                 "timestamp" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
-            "useJWT": false
+            "useJWT": true,
+            "customerKey" : "my-signing-key"
         }
     },
     "configurationArguments":

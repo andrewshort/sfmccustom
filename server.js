@@ -13,7 +13,7 @@ var results = {};
 var contactCalls = {};
 var xforwardedfor = {};
 
-/*
+
 router.use(function(req, res, next) {
 	var data = "";
 	req.on('data', function(chunk){ 
@@ -42,7 +42,7 @@ router.use(function(req, res, next) {
 		next();
 	});
 });
-*/
+
 
 router.get('/results', function(req, res) {
 	res.json(results);
