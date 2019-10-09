@@ -39,7 +39,9 @@
         "publish":
         {
             "url": "https://sfmccustom.herokuapp.com/api/post?action=publish",
-            "statusCode" : "200"
+            "statusCode" : "200",
+            "useJWT": true,
+            "customerKey" : "my-signing-key"
         }
     },
     "wizardSteps": [
