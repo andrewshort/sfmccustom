@@ -25,14 +25,18 @@ router.use(function(req, res, next) {
 		req.rawBody = data;
 
 		if (data) {
+			console.log('Raw Body: ' + req.rawBody);
+			
 			try {
 				req.body = JSON.parse(data);
+				req.body.jwtEncoded = false;
 			} catch(e) {
 				console.log(e.toString());
 				try {
 					var customerKey = 'my-signing-key';
 					var decoded = jwt.decode(data, customerKey);
 					req.body = decoded;
+					req.body.jwtEncoded = true;
 				} catch(e) {
 					console.log(e.toString());
 				}
@@ -207,6 +211,7 @@ router.post('/post', function(req, res) {
 	respondWith.reqip = req.ip;
 	respondWith.remoteAddress = req.connection.remoteAddress;
 	respondWith.xforwardedfor = req.headers["x-forwarded-for"];
+	respondWith.jwtEncoded = req.body.jwtEncoded;
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
