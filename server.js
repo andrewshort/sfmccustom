@@ -4,7 +4,7 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var jwt = require('jwt-simple');
 server.use('/', express.static(__dirname + '/public/'));
-server.use(bodyParser.json());
+//server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
 var router = express.Router();
