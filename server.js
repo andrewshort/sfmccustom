@@ -33,7 +33,7 @@ router.use(function(req, res, next) {
 			} catch(e) {
 				console.log(e.toString());
 				try {
-					var customerKey = 'my-signing-key';
+					var customerKey = process.env.customerKey || 'my-signing-key';
 					var decoded = jwt.decode(data, customerKey);
 					req.body = decoded;
 					req.body.jwtEncoded = true;
