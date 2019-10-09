@@ -29,8 +29,7 @@
                 "timestamp" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
-            "useJwt": true,
-            "customerKey" : "my-signing-key"
+            "useJwt": true
         }
     },
     "configurationArguments":
@@ -40,8 +39,7 @@
         {
             "url": "https://sfmccustom.herokuapp.com/api/post?action=publish",
             "statusCode" : "200",
-            "useJwt": true,
-            "customerKey" : "my-signing-key"
+            "useJwt": true
         }
     },
     "wizardSteps": [
