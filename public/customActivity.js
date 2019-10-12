@@ -66,6 +66,18 @@ define([
             }
         });
 
+        if (executeObj && executeObj.useJwt) {
+            $("#useJwt").attr('checked', 'checked');
+        } else {
+            $("#useJwt").removeAttr('checked');
+        }
+
+        $("#useJwt").change(function() {
+            var useJwt = $(this).is(":checked");
+
+            executeObj.useJwt = useJwt;
+        });
+
         if (currentStep) {
             showCurrentStep();
         }
