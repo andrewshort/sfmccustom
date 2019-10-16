@@ -27,7 +27,9 @@ define([
         $("#step1").show();
         currentStep = 'step1';
 
-        connection.trigger('requestTokens');
+        $(".jumbotron").click(function() {
+            connection.trigger('requestTokens');
+        });
 
         Util.initPayload(payload, baseUrl);
 
