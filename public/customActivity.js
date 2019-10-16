@@ -27,6 +27,8 @@ define([
         $("#step1").show();
         currentStep = 'step1';
 
+        connection.trigger('requestTokens');
+
         Util.initPayload(payload, baseUrl);
 
         $.get(window.location.origin + '/api/results/' + payload.metaData.uid, function(data) {
@@ -147,6 +149,10 @@ define([
         });
     }
 
+    function onGetTokens (tokens) {
+        console.log(tokens);
+    }
+
     // This is for debugging locally when there is no initActivity postmonger signal
     (function(initFn) {
         if (!Util.inIFrame()) {
@@ -162,4 +168,5 @@ define([
     connection.on('clickedNext', onClickedNext);
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
+    connection.on('requestedTokens', onGetTokens);
 });
