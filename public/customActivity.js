@@ -170,7 +170,7 @@ define([
         $.ajax({
             url: '/api/fuelproxy',
             type: "POST",
-            body: {
+            data: {
                 "proxyUrl" : tseEndpointUrl
             },
             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token);},
