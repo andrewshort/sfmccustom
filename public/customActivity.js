@@ -168,7 +168,7 @@ define([
         var tseEndpointUrl = restEndpoint + "platform/v1/endpoints";
 
         $.ajax({
-            url: '/fuelproxy',
+            url: '/api/fuelproxy',
             type: "POST",
             body: {
                 "proxyUrl" : tseEndpointUrl
