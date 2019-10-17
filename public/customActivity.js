@@ -18,6 +18,9 @@ define([
     var currentStep = '';
     var initialized = false;
 
+    var token;
+    var endpointUrls;
+
     function initialize(data) {
         if (data) {
             payload = data;
@@ -29,7 +32,6 @@ define([
 
         $(".jumbotron").click(function() {
             connection.trigger('requestTokens');
-            connection.trigger('requestEndpoints');
         });
 
         Util.initPayload(payload, baseUrl);
@@ -153,11 +155,26 @@ define([
     }
 
     function onGetTokens (tokens) {
+        token = tokens.fuel2token;
+        connection.trigger('requestEndpoints');
         console.log(tokens);
     }
 
     function onGetEndpoints(endpoints) {
+        endpointUrls = endpoints;
         console.log(endpoints);
+
+        var restEndpoint = endpointUrls.fuelapiRestHost;
+        var tseEndpointUrl = restEndpoint + "platform/v1/endpoints";
+
+        $.ajax({
+            url: tseEndpointUrl,
+            type: "GET",
+            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token);},
+            success: function(data, textStatus, jqXHR) { 
+                console.log(data);
+            }
+         });
     }
 
     // This is for debugging locally when there is no initActivity postmonger signal
