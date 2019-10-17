@@ -259,6 +259,7 @@ router.post('/fuelproxy', function(req, res) {
 	var postBody = req.postBody;
 	*/
 
+	console.log("requesting: " + url);
 	var webreq = unirest.get(url).headers('Authorization', auth);
 	
     webreq.end(function (webres) {
