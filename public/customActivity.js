@@ -168,8 +168,11 @@ define([
         var tseEndpointUrl = restEndpoint + "platform/v1/endpoints";
 
         $.ajax({
-            url: tseEndpointUrl,
-            type: "GET",
+            url: '/fuelproxy',
+            type: "POST",
+            body: {
+                "proxyUrl" : tseEndpointUrl
+            },
             beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token);},
             success: function(data, textStatus, jqXHR) { 
                 console.log(data);

@@ -3,7 +3,8 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
     "jwt-simple": "^0.5.6",
-    "requirejs": "^2.3.5"
+    "requirejs": "^2.3.5",
+    "unirest": "^0.6.0"
   },
   "name": "sfmc-jb-custom",
   "description": "Test bed custom activity",

@@ -6,6 +6,7 @@ var jwt = require('jwt-simple');
 server.use('/', express.static(__dirname + '/public/'));
 //server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+var unirest = require("unirest");
 
 var router = express.Router();
 
@@ -17,7 +18,6 @@ var xforwardedfor = {};
 router.use(function(req, res, next) {
 	var data = "";
 	req.on('data', function(chunk){ 
-		console.log('data event');
 		data += chunk;
 	});
 
@@ -25,7 +25,6 @@ router.use(function(req, res, next) {
 		req.rawBody = data;
 
 		if (data) {
-			console.log('Raw Body: ' + req.rawBody);
 			
 			try {
 				req.body = JSON.parse(data);
@@ -247,6 +246,31 @@ router.post('/post', function(req, res) {
 			res.status(returnStatusCode).send(respondWith);
 		}, delay);
 	}
+});
+
+router.post('/fuelproxy', function(req, res) {
+	var auth = req.headers["authorization"];
+
+	var url = req.body.proxyUrl;
+	var method = req.body.method || "GET";
+
+	/*
+	Only support GET calls for now
+	var postBody = req.postBody;
+	*/
+
+	var webreq = unirest.get(url).headers('Authorization', auth);
+	
+    webreq.end(function (webres) {
+		if (webres.error) {
+            console.log(webres.status);
+            res.status(webres.status).json(webres.error);
+            return;
+        }
+
+		res.json(webres.body);
+	
+	});
 });
 
 server.use('/api', router);
