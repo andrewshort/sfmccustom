@@ -29,6 +29,7 @@ define([
 
         $(".jumbotron").click(function() {
             connection.trigger('requestTokens');
+            connection.trigger('requestEndpoints');
         });
 
         Util.initPayload(payload, baseUrl);
@@ -155,6 +156,10 @@ define([
         console.log(tokens);
     }
 
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
+
     // This is for debugging locally when there is no initActivity postmonger signal
     (function(initFn) {
         if (!Util.inIFrame()) {
@@ -171,4 +176,5 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
     connection.on('requestedTokens', onGetTokens);
+    connection.on('requestedEndpoints', onGetEndpoints);
 });
