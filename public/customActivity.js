@@ -169,12 +169,15 @@ define([
 
         $.ajax({
             url: '/api/fuelproxy',
-            type: "POST",
+            type: 'post',
             data: {
-                "proxyUrl" : tseEndpointUrl
+                proxyUrl : tseEndpointUrl
             },
-            beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token);},
-            success: function(data, textStatus, jqXHR) { 
+            headers: {
+                "Authorization" : "Bearer " + token
+            },
+            dataType: 'json',
+            success: function(data) { 
                 console.log(data);
             }
          });
