@@ -171,7 +171,7 @@ define([
             url: '/api/fuelproxy',
             type: 'post',
             data: {
-                proxyUrl : tseEndpointUrl
+                proxyUrl : encodeURIComponent(tseEndpointUrl)
             },
             headers: {
                 "Authorization" : "Bearer " + token
