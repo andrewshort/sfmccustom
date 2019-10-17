@@ -249,6 +249,7 @@ router.post('/post', function(req, res) {
 });
 
 router.post('/fuelproxy', function(req, res) {
+	console.log('enter fuel proxy');
 	var auth = req.headers["authorization"];
 
 	var url = req.body.proxyUrl;
