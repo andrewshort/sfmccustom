@@ -30,7 +30,7 @@
                 "timestamp" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
-            "useJwt": true
+            "useJwt": false
         }
     },
     "configurationArguments":
