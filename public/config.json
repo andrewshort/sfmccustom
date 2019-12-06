@@ -4,7 +4,7 @@
     {
         "category": "message",
         "isConfigured": true,
-        "shapeOverride" : "invalidshape"
+        "shapeOverride" : "dot"
     },
     "type": "REST",
     "lang":
