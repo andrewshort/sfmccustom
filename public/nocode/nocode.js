@@ -16,6 +16,8 @@ define([
 
         updateButton('next', 'Done', true);
         updateButton('back', 'Back', false);
+
+        connection.trigger('requestContactsSchema');
     }    
 
     function onClickedNext() {     
@@ -31,10 +33,16 @@ define([
         });
     }
 
+    function onRequestedContactsSchema( data ) {
+        var responseJson = JSON.parse(data.xhrResponseText);
+        console.log(responseJson);
+    }
+
     $(window).ready(function() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     });
 
     connection.on('initActivity', initialize);
     connection.on('clickedNext', onClickedNext);
+    connection.on('requestedContactsSchema', onRequestedContactsSchema);
 });
