@@ -1,9 +1,9 @@
 {
-    "workflowApiVersion": "1.1",
+    "workflowApiVersion": 1.1,
     "metaData":
     {
         "category": "custom",
-        "isConfigured": false,
+        "isConfigured": false
     },
     "type": "REST",
     "lang":
@@ -24,17 +24,12 @@
     },
     "configurationArguments":
     {
-        "applicationExtensionKey": "mcjbcustom",
         "publish":
         {
             "url": "",
             "useJwt": false
         }
     },
-    "wizardSteps": [
-        {  "label": "Workflow", "key": "step1" },
-        {  "label": "Execute", "key": "step2" }
-    ],
     
     "userInterfaces":
     {
