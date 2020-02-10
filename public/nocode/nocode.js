@@ -31,13 +31,6 @@ define([
         });
     }
 
-    // This is for debugging locally when there is no initActivity postmonger signal
-    (function(initFn) {
-        if (!Util.inIFrame()) {
-            initFn({});
-        }
-    })(initialize);
-
     $(window).ready(function() {
         connection.trigger('ready'); // JB will respond the first time 'ready' is called with 'initActivity'
     });
