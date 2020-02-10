@@ -17,7 +17,7 @@
                 baseUrl: ''
             };
             var dependencies = [
-                'customActivity'
+                'nocode'
             ];
             require(config, dependencies);
         })();
@@ -25,35 +25,8 @@
 </head>
 
 <body>
-    <div id="step1" class="step">
-        <div class="container">
-            <div class="jumbotron">
-                <h2>Journey Builder REST Explorer</h2>
-            </div>
-            <div class="row">
-                <div id="configs">
-
-                </div>
-            </div>
-            <div class="row">
-                <hr />
-                <div id="resultsDiv">      
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="step2" class="step">
-        <div class="container">
-            <label for="executeStatusCode">Return Status Code</label>
-            <input id="executeStatusCode" class="form-control" type="text" placeholder="Return Status Code" value="200"></input>
-            
-            <label for="securityOptions">Security Context Key</label>
-            <input id="securityContextKey" class="form-control" type="text" placeholder="Security Context Key" value=""></input>
-            
-            <label for="useJwt">Use Jwt for execute?</label>
-            <input id="useJwt" class="form-control" type="checkbox"></input>
-            
-        </div>
+    <div class="container" id="nocode">
+        No Code!
     </div>
 </body>
 
