@@ -1,0 +1,57 @@
+{
+    "workflowApiVersion": "1.1",
+    "metaData":
+    {
+        "category": "custom",
+        "isConfigured": false,
+    },
+    "type": "REST",
+    "lang":
+    {
+        "en-US":
+        {
+            "name": "No Code",
+            "description": ""
+        }
+    },
+    "arguments":
+    {
+        "execute":
+        {
+            "url": "",
+            "useJwt": false
+        }
+    },
+    "configurationArguments":
+    {
+        "applicationExtensionKey": "mcjbcustom",
+        "publish":
+        {
+            "url": "",
+            "useJwt": false
+        }
+    },
+    "wizardSteps": [
+        {  "label": "Workflow", "key": "step1" },
+        {  "label": "Execute", "key": "step2" }
+    ],
+    
+    "userInterfaces":
+    {
+        "configModal":
+        {
+            "fullscreen": true
+        }
+    },
+    "schema":
+    {
+        "arguments":
+        {
+            "execute":
+            {
+                "inArguments": [],
+                "outArguments": []
+            }
+        }
+    }
+}
