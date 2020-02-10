@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 define([
-    'js/postmonger'
+    '../js/postmonger'
 ], function(
     Postmonger    
 ) {
