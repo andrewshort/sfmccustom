@@ -34,8 +34,8 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
-        var responseJson = JSON.parse(data.xhrResponseText);
-        console.log(responseJson);
+        var attributeSelector = new window.nocode.attributeSelect('nocode', data.schemaResponse.schema);
+        attributeSelector.render();
     }
 
     $(window).ready(function() {
