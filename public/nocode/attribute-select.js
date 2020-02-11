@@ -3,7 +3,6 @@
     var attributeSelect = function( domId, schema ) {
 
         this.domId = domId;
-        this.contactModel = contactModel;
         this.parentElement = document.getElementById( domId );
         this.schema = schema;
 
