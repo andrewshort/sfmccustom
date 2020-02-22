@@ -34,7 +34,7 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
-        var mainView = new window.nocode.mainView('nodcode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments);
+        var mainView = new window.nocode.mainView('nocode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments);
         mainView.render();
     }
 
