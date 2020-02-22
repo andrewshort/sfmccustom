@@ -34,10 +34,8 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
-        var attributeList = new window.nocode.attributeList('attributeList', payload.schema.arguments.execute.inArguments);
-        var attributeSelector = new window.nocode.attributeSelect('attributeSelector', data.schemaReponse.schema);
-        attributeList.render();
-        attributeSelector.render();
+        var mainView = new window.nocode.mainView('nodcode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments);
+        mainView.render();
     }
 
     $(window).ready(function() {
