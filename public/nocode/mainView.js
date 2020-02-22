@@ -18,11 +18,11 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
 
         var attributeList = document.createElement('div');
         attributeList.id = "attributeList";
-        attributeList.className = "col-sm";
+        attributeList.className = "col-md-6";
 
         var attributeSelect = document.createElement('div');
         attributeSelect.id = "attributeSelector";
-        attributeSelect.className = "col-sm";
+        attributeSelect.className = "col-md-6";
 
         topDiv.appendChild(attributeList);
         topDiv.appendChild(attributeSelect);
