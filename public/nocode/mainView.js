@@ -30,8 +30,8 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
         topDiv.appendChild(attributeList);
         topDiv.appendChild(attributeSelect);
 
-        var attributeList = new window.nocode.attributeList('attributeList', payload.schema.arguments.execute.inArguments);
-        var attributeSelector = new window.nocode.attributeSelect('attributeSelector', data.schemaReponse.schema);
+        var attributeList = new window.nocode.attributeList('attributeList', this.inArgs);
+        var attributeSelector = new window.nocode.attributeSelect('attributeSelector', this.contactSchema);
         attributeList.render();
         attributeSelector.render();
     }
