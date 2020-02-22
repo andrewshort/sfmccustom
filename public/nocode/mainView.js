@@ -19,7 +19,7 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
         attributeList.id = "attributeList";
 
         var attributeSelect = document.createElement('div');
-        attributeSelect.id = "attributeSelect";
+        attributeSelect.id = "attributeSelector";
 
         topDiv.appendChild(attributeList);
         topDiv.appendChild(attributeSelect);
