@@ -13,6 +13,7 @@ window.nocode.attributeSelect = function( domId, schema ) {
             child = this.parentElement.lastElementChild; 
         }
 
+        var selectElement = this.renderElement();
         document.getElementById(domId).appendChild(selectElement);
     }
 
