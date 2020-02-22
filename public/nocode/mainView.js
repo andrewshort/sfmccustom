@@ -3,7 +3,7 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
 
     this.domId = domId;
     this.inArgs = inArgs;
-    this.contactSchema = 
+    this.contactSchema = contactSchema;
     this.parentElement = document.getElementById( domId );
 
     this.render = function() {
