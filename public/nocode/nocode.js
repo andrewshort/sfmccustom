@@ -1,10 +1,8 @@
 /*jshint esversion: 6 */
 define([
     '../js/postmonger'
-    'attribute-select.js')
 ], function(
-    Postmonger,
-    AttributeSelector
+    Postmonger
 ) {
     'use strict';
 
@@ -36,7 +34,7 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
-        var attributeSelector = new AttributeSelector('nocode', data.schemaReponse.schema);
+        var attributeSelector = new window.nocode.attributeSelect('nocode', data.schemaReponse.schema);
         attributeSelector.render();
     }
 

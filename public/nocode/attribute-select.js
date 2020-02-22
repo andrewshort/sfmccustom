@@ -1,5 +1,6 @@
 
-module.exports = function( domId, schema ) {
+window.nocode = window.nocode || {};
+window.nocode.attributeSelect = function( domId, schema ) {
 
     this.domId = domId;
     this.parentElement = document.getElementById( domId );
