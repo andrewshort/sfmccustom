@@ -13,12 +13,6 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
             child = this.parentElement.lastElementChild; 
         }
 
-        var selectElement = this.renderElement();
-        document.getElementById(domId).appendChild(selectElement);
-    }
-
-    this.renderElement = function() {
-
         var topDiv = document.createElement('div');
 
         var attributeList = document.createElement('div');
@@ -29,6 +23,8 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
 
         topDiv.appendChild(attributeList);
         topDiv.appendChild(attributeSelect);
+
+        document.getElementById(domId).appendChild(topDiv);
 
         var attributeList = new window.nocode.attributeList('attributeList', this.inArgs);
         var attributeSelector = new window.nocode.attributeSelect('attributeSelector', this.contactSchema);
