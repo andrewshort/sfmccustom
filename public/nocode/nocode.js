@@ -34,7 +34,9 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
-        var attributeSelector = new window.nocode.attributeSelect('nocode', data.schemaReponse.schema);
+        var attributeList = new window.nocode.attributeSelect('attributeList', payload.schema.arguments.execute.inArguments);
+        var attributeSelector = new window.nocode.attributeSelect('attributeSelector', data.schemaReponse.schema);
+        attributeList.render();
         attributeSelector.render();
     }
 
