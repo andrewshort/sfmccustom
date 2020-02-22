@@ -14,12 +14,15 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
         }
 
         var topDiv = document.createElement('div');
+        topDiv.className = "row";
 
         var attributeList = document.createElement('div');
         attributeList.id = "attributeList";
+        attributeList.className = "col-sm";
 
         var attributeSelect = document.createElement('div');
         attributeSelect.id = "attributeSelector";
+        attributeSelect.className = "col-sm";
 
         topDiv.appendChild(attributeList);
         topDiv.appendChild(attributeSelect);

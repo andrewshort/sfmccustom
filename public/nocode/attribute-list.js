@@ -32,9 +32,11 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 label.innerHTML = key;
 
                 var input = document.createElement("input");
+                input.className = "form-control";
                 input.placeholder = dataType;
 
                 var div = document.createElement("div");
+                div.className = "form-group";
                 div.appendChild(label);
                 div.appendChild(input);
                 topDiv.appendChild(div);
