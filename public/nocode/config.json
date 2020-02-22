@@ -44,7 +44,31 @@
         {
             "execute":
             {
-                "inArguments": [],
+                "inArguments": [
+                {
+                    "exampleInArgumentText":
+                    {
+                        "dataType": "Text",
+                        "isNullable": false,
+                        "direction": "in"
+                    }
+                },
+                {
+                    "exampleInArgumentNumber":
+                    {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "in"
+                    }
+                },
+                {
+                    "exampleInArgumentTextRequired":
+                    {
+                        "dataType": "Number",
+                        "isNullable": false,
+                        "direction": "in"
+                    }
+                }],
                 "outArguments": []
             }
         }

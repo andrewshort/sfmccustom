@@ -10,9 +10,14 @@
   "description": "Test bed custom activity",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha --recursive"
   },
   "engines": {
     "node": "8.11.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1"
   }
 }
