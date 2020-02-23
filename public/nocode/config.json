@@ -34,10 +34,9 @@
     "userInterfaces":
     {
         "configInspector": {
-            "size": "scm-lg",
-            "emptyIframe": true
+            "size": "scm-lg"
         },
-        "configurationSupportsReadOnlyMode" : true,
+        "configurationSupportsReadOnlyMode" : true
     },
     "schema":
     {
