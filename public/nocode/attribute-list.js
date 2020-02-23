@@ -51,6 +51,7 @@ window.nocode.attributeList = function( domId, inArgs ) {
     }
 
     this.onDragOver = function(e) {
+        e.preventDefault();
         console.log('onDragOver');
         console.log(e);
     }

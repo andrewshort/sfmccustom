@@ -41,12 +41,18 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 option.innerHTML = valueDefinition.definitionName.value;
                 option.setAttribute('data-value', valueDefinition.definitionID);
                 option.setAttribute('draggable', 'true');
+                option.addEventListener('onDragStart', this.onDragStart);
                 listGroup.appendChild(option);
             }
             
         }
 
         return topElement;
+    }
+
+    this.onDragStart = function(e) {
+        console.log('onDragStart');
+        e.dataTransfer.setData('text/plain', e.target.id);
     }
 }
 
