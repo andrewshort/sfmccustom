@@ -56,7 +56,7 @@ window.nocode.attributeSelect = function( domId, schema ) {
     this.onDragStart = function(e) {
         console.log('onDragStart');
         e.dataTransfer.setData('text/plain', e.target.dataset.value);
-        e.stopPropagation();
+        e.preventDefault();
         return true;
     }
 }
