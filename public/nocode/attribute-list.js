@@ -20,6 +20,7 @@ window.nocode.attributeList = function( domId, inArgs ) {
             var inArg = inArgs[i];
             var onDragOver = this.onDragOver;
             var onDrop = this.onDrop;
+            var onDragEnter = this.onDragEnter;
 
             Object.keys(inArg).forEach(function(key,index) {
                 var schemaObject = inArg[key];
@@ -44,12 +45,20 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 topDiv.appendChild(div);
 
                 input.addEventListener('dragover', onDragOver, false);
+                input.addEventListener('dragenter', onDragEnter, false);
                 input.addEventListener('drop', onDrop, false);
             });
         }
         
     }
 
+    this.onDragEnter = function(e) {
+        console.log('onDragEnter');
+        console.log(e);
+        
+        e.preventDefault();
+        return true;
+    }
     this.onDragOver = function(e) {
         console.log('onDragOver');
         console.log(e);
