@@ -37,8 +37,8 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 var input = document.createElement("input");
                 input.className = "form-control";
                 input.placeholder = dataType;
-                input.addEventListener('onDragOver', this.onDragOver);
-                input.addEventListener('onDrop', this.onDrop);
+                input.addEventListener('dragover', this.onDragOver);
+                input.addEventListener('drop', this.onDrop);
 
                 var div = document.createElement("div");
                 div.className = "form-group";
