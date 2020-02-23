@@ -12,12 +12,8 @@ window.nocode.attributeList = function( domId, inArgs ) {
             child = this.parentElement.lastElementChild; 
         }
 
-        var selectElement = this.renderElement();
-        document.getElementById(domId).appendChild(selectElement);
-    }
-
-    this.renderElement = function() {
         var topDiv = document.createElement("div");
+        document.getElementById(domId).appendChild(topDiv);
         
         var inArgs = this.inArgs;
         for (var i = 0; i < inArgs.length; i++) {
@@ -37,17 +33,18 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 var input = document.createElement("input");
                 input.className = "form-control";
                 input.placeholder = dataType;
-                input.addEventListener('dragover', this.onDragOver);
-                input.addEventListener('drop', this.onDrop);
 
                 var div = document.createElement("div");
                 div.className = "form-group";
                 div.appendChild(label);
                 div.appendChild(input);
                 topDiv.appendChild(div);
+
+                input.addEventListener('dragover', this.onDragOver);
+                input.addEventListener('drop', this.onDrop);
             });
         }
-        return topDiv;
+        
     }
 
     this.onDragOver = function(e) {
