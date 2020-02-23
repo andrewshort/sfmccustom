@@ -34,6 +34,20 @@ define([
     }
 
     function onRequestedContactsSchema( data ) {
+        $(document.body).bind("dragover", function(e) {
+            e.preventDefault();
+            return false;
+       });
+
+       $(document.body).bind("dragenter", function(e){
+            e.preventDefault();
+            return false;
+        });
+       $(document.body).bind("drop", function(e){
+            e.preventDefault();
+            return false;
+        });
+        
         var mainView = new window.nocode.mainView('nocode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments);
         mainView.render();
     }
