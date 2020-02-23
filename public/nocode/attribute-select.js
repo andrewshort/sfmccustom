@@ -19,7 +19,9 @@ window.nocode.attributeSelect = function( domId, schema ) {
 
     this.renderElement = function() {
         var topElement = document.createElement('ul');
-        topElement.setAttribute('class', 'list-group');
+        topElement.setAttribute('class', 'list-group attribute-selector');
+        topElement.style.height = "300px";
+        topElement.style.overflow = "scroll";
 
         var setDefinitions = this.schema.setDefinitions;
         for (var i = 0; i < setDefinitions.length; i++) {
