@@ -39,6 +39,7 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 option.setAttribute('draggable', 'true');
                 listGroup.appendChild(option);
                 option.addEventListener('dragstart', this.onDragStart, false);
+
             }   
         }
     }
