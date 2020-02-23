@@ -44,9 +44,9 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 div.appendChild(input);
                 topDiv.appendChild(div);
 
-                input.addEventListener('dragover', onDragOver, false);
-                input.addEventListener('dragenter', onDragEnter, false);
-                input.addEventListener('drop', onDrop, false);
+                div.addEventListener('dragover', onDragOver, false);
+                div.addEventListener('dragenter', onDragEnter, false);
+                div.addEventListener('drop', onDrop, false);
             });
         }
         
