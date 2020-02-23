@@ -26,14 +26,19 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 var schemaObject = inArg[key];
                 var dataType = schemaObject.dataType || "Text";
                 var isNullable = schemaObject.isNullable || true;
-                var direction = schemaObject.direction || "in";
+                // var direction = schemaObject.direction || "in";
 
                 var label = document.createElement("label");
                 label.innerHTML = key;
+                if (!isNullable) {
+                    label = label + " *";
+                }
 
                 var input = document.createElement("input");
                 input.className = "form-control";
                 input.placeholder = dataType;
+                input.addEventListener('onDragOver', this.onDragOver);
+                input.addEventListener('onDrop', this.onDrop);
 
                 var div = document.createElement("div");
                 div.className = "form-group";
@@ -43,6 +48,16 @@ window.nocode.attributeList = function( domId, inArgs ) {
             });
         }
         return topDiv;
+    }
+
+    this.onDragOver = function(e) {
+        console.log('onDragOver');
+        console.log(e);
+    }
+
+    this.onDrop = function(e) {
+        console.log('onDrop');
+        console.log(e);
     }
 
     /*
