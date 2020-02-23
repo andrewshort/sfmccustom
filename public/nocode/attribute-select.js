@@ -47,6 +47,7 @@ window.nocode.attributeSelect = function( domId, schema ) {
         console.log('onDragStart');
         e.dataTransfer.setData('text/plain', e.target.dataset.value);
         e.stopPropagation();
+        return true;
     }
 }
 
