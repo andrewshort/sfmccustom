@@ -18,6 +18,9 @@ window.nocode.attributeList = function( domId, inArgs ) {
         var inArgs = this.inArgs;
         for (var i = 0; i < inArgs.length; i++) {
             var inArg = inArgs[i];
+            var onDragOver = this.onDragOver;
+            var onDrop = this.onDrop;
+
             Object.keys(inArg).forEach(function(key,index) {
                 var schemaObject = inArg[key];
                 var dataType = schemaObject.dataType || "Text";
@@ -40,8 +43,8 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 div.appendChild(input);
                 topDiv.appendChild(div);
 
-                input.addEventListener('dragover', this.onDragOver);
-                input.addEventListener('drop', this.onDrop);
+                input.addEventListener('dragover', onDragOver);
+                input.addEventListener('drop', onDrop);
             });
         }
         
