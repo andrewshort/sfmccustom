@@ -34,7 +34,7 @@
     "userInterfaces":
     {
         "configInspector": {
-            "size": "scm-lg"
+            "size": "scm-full"
         },
         "configurationSupportsReadOnlyMode" : true
     },
