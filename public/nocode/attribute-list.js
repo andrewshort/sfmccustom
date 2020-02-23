@@ -21,6 +21,7 @@ window.nocode.attributeList = function( domId, inArgs ) {
             var onDragOver = this.onDragOver;
             var onDrop = this.onDrop;
             var onDragEnter = this.onDragEnter;
+            var onDragLeave = this.onDragLeave;
 
             Object.keys(inArg).forEach(function(key,index) {
                 var schemaObject = inArg[key];
@@ -50,28 +51,43 @@ window.nocode.attributeList = function( domId, inArgs ) {
                 input.addEventListener('dragover', onDragOver, false);
                 input.addEventListener('dragenter', onDragEnter, false);
                 input.addEventListener('drop', onDrop, false);
+                input.addEventListener('dragleave', onDragLeave, false);
             });
         }
         
     }
 
     this.onDragEnter = function(e) {
+        e.preventDefault();
         console.log('onDragEnter');
         console.log(e);
         
-        e.preventDefault();
-        return true;
+        
+        return false;
     }
+
+    this.onDragLeave = function(e) {
+        e.preventDefault();
+        console.log('onDragLeave');
+        console.log(e);
+        
+        
+        return false;
+    }
+
     this.onDragOver = function(e) {
+        e.preventDefault();        
         console.log('onDragOver');
         console.log(e);
         
-        e.preventDefault();        
+        
     }
 
     this.onDrop = function(e) {
+        e.preventDefault();
         console.log('onDrop');
         console.log(e);
+        return false;
     }
 
     /*
