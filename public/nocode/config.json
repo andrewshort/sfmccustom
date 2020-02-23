@@ -33,10 +33,11 @@
     
     "userInterfaces":
     {
-        "configModal":
-        {
-            "fullscreen": true
-        }
+        "configInspector": {
+            "size": "scm-lg",
+            "emptyIframe": true
+        },
+        "configurationSupportsReadOnlyMode" : true,
     },
     "schema":
     {
