@@ -41,7 +41,7 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 option.innerHTML = valueDefinition.definitionName.value;
                 option.setAttribute('data-value', valueDefinition.definitionID);
                 option.setAttribute('draggable', 'true');
-                option.addEventListener('onDragStart', this.onDragStart);
+                option.addEventListener('onDragStart', this.onDragStart, true);
                 listGroup.appendChild(option);
             }
             
