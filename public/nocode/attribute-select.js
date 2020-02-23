@@ -13,15 +13,11 @@ window.nocode.attributeSelect = function( domId, schema ) {
             child = this.parentElement.lastElementChild; 
         }
 
-        var selectElement = this.renderElement();
-        document.getElementById(domId).appendChild(selectElement);
-    }
-
-    this.renderElement = function() {
         var topElement = document.createElement('ul');
         topElement.setAttribute('class', 'list-group attribute-selector');
         topElement.style.height = "300px";
         topElement.style.overflow = "scroll";
+        document.getElementById(domId).appendChild(topElement);
 
         var setDefinitions = this.schema.setDefinitions;
         for (var i = 0; i < setDefinitions.length; i++) {
@@ -41,13 +37,10 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 option.innerHTML = valueDefinition.definitionName.value;
                 option.setAttribute('data-value', valueDefinition.definitionID);
                 option.setAttribute('draggable', 'true');
-                option.addEventListener('dragStart', this.onDragStart, true);
                 listGroup.appendChild(option);
-            }
-            
+                option.addEventListener('dragStart', this.onDragStart, true);
+            }   
         }
-
-        return topElement;
     }
 
     this.onDragStart = function(e) {
