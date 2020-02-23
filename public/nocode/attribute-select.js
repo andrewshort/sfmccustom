@@ -18,28 +18,33 @@ window.nocode.attributeSelect = function( domId, schema ) {
     }
 
     this.renderElement = function() {
-        var selectElement = document.createElement('select');
-        selectElement.setAttribute('class', 'form-control');
+        var topElement = document.createElement('ul');
+        topElement.setAttribute('class', 'list-group');
 
         var setDefinitions = this.schema.setDefinitions;
         for (var i = 0; i < setDefinitions.length; i++) {
             var setDefinition = setDefinitions[i];
             
-            var group = document.createElement('optgroup');
-            group.setAttribute('label', setDefinition.definitionName.value);
+            var group = document.createElement('li');
+            group.innerHTML = setDefinition.definitionName.value;
+            topElement.appendChild(group);
+
+            var listGroup = document.createElement('ul');
+            topElement.appendChild(listGroup);
 
             for (var k = 0; k < setDefinition.valueDefinitions.length; k++) {
                 var valueDefinition = setDefinition.valueDefinitions[k];
                 
-                var option = document.createElement('option');
+                var option = document.createElement('li');
                 option.innerHTML = valueDefinition.definitionName.value;
-                option.setAttribute('value', valueDefinition.definitionID);
-                group.appendChild(option);
+                option.setAttribute('data-value', valueDefinition.definitionID);
+                option.setAttribute('draggable', 'true');
+                listGroup.appendChild(option);
             }
-            selectElement.appendChild(group);
+            
         }
 
-        return selectElement;
+        return topElement;
     }
 }
 
