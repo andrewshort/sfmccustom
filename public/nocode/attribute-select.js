@@ -34,9 +34,18 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 var valueDefinition = setDefinition.valueDefinitions[k];
                 
                 var option = document.createElement('li');
-                option.innerHTML = valueDefinition.definitionName.value;
-                option.setAttribute('data-value', valueDefinition.definitionID);
-                option.setAttribute('draggable', 'true');
+                //option.innerHTML = valueDefinition.definitionName.value;
+                //option.setAttribute('data-value', valueDefinition.definitionID);
+                //option.setAttribute('draggable', 'true');
+                
+                var innerDiv = document.createElement("div");
+                innerDiv.setAttribute('data-value', valueDefinition.definitionID);
+                innerDiv.setAttribute('draggable', 'true');
+                innerDiv.innerHTML = "valueDefinition.definitionName.value";
+                option.appendChild(innerDiv);
+
+                
+
                 listGroup.appendChild(option);
                 option.addEventListener('dragstart', this.onDragStart, false);
 
