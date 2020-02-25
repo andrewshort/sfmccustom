@@ -48,10 +48,15 @@ window.nocode.attributeSelect = function( domId, schema ) {
 
                 listGroup.appendChild(option);
                 option.addEventListener('dragstart', this.onDragStart, false);
+                option.addEventListener('click', this.onAttributeClick);
 
             }   
         }
     }
+
+    this.onAttributeClick = function(e) {
+        console.log(e);
+    };
 
     this.onDragStart = function(e) {
         console.log('onDragStart');
