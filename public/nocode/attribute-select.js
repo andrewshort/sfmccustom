@@ -40,14 +40,15 @@ window.nocode.attributeSelect = function( domId, schema ) {
                 
                 var innerDiv = document.createElement("div");
                 innerDiv.setAttribute('data-value', valueDefinition.definitionID);
-                innerDiv.setAttribute('draggable', 'true');
-                innerDiv.innerHTML = "valueDefinition.definitionName.value";
+                innerDiv.setAttribute('data-expression', "TODO");
+                // innerDiv.setAttribute('draggable', 'true');
+                innerDiv.innerHTML = valueDefinition.definitionName.value;
                 option.appendChild(innerDiv);
 
                 
 
                 listGroup.appendChild(option);
-                option.addEventListener('dragstart', this.onDragStart, false);
+                // option.addEventListener('dragstart', this.onDragStart, false);
                 option.addEventListener('click', this.onAttributeClick);
 
             }   
@@ -55,7 +56,12 @@ window.nocode.attributeSelect = function( domId, schema ) {
     }
 
     this.onAttributeClick = function(e) {
-        console.log(e);
+        
+        var attributeId = e.target.getAttribute('data-value');
+        var expression = e.target.getAttribute('data-expression');
+
+        console.log(expression);
+        window.copy(expression);
     };
 
     this.onDragStart = function(e) {
