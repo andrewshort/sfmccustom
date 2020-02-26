@@ -211,6 +211,8 @@ router.post('/post', function(req, res) {
 	respondWith.remoteAddress = req.connection.remoteAddress;
 	respondWith.xforwardedfor = req.headers["x-forwarded-for"];
 	respondWith.jwtEncoded = req.body.jwtEncoded;
+	respondWith.dateReturnedAsEmptyString = "";
+	respondWith.dateReturnedAsNull = null;
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
