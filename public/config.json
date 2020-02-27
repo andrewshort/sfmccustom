@@ -25,6 +25,9 @@
                 },
                 {
                     "delay" : "0"
+                },
+                {
+                    "dateInputByUser" : "2020-02-01T12:34:56-06:00"
                 }
             ],
             "outArguments": [{
@@ -90,6 +93,14 @@
                         "isNullable": false,
                         "direction": "in"
                     }
+                },
+                {
+                    "dateInputByUser" :
+                        {
+                            "dataType": "Date",
+                            "isNullable": false,
+                            "direction": "in"
+                        }
                 }],
                 "outArguments": [
                     {

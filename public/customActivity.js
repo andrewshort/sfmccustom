@@ -57,6 +57,11 @@ define([
             payload.arguments.execute.inArguments[0].returnStatusCode = $(this).val();
         });
 
+        $("#dateInputByUser").val(payload.arguments.execute.inArguments[2].dateInputByUser);
+        $("#dateInputByUser").change(function() {
+            payload.arguments.execute.inArguments[2].dateInputByUser = $(this).val();
+        });
+
         var executeObj = payload.arguments.execute;
         if (executeObj && executeObj.securityOptions && executeObj.securityOptions.securityContextKey) {
             $("#securityContextKey").val(executeObj.securityOptions.securityContextKey);    
