@@ -100,13 +100,6 @@
                             "direction": "Out",
                             "access": "Visible"
                         },
-                        "dateReturnedAsEmptyString" :
-                        {
-                            "dataType": "Date",
-                            "isNullable": false,
-                            "direction": "Out",
-                            "access": "Visible"
-                        },
                         "dateReturnedAsNull" :
                         {
                             "dataType": "Date",
