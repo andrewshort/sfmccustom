@@ -26,7 +26,7 @@
                     "delay" : "0"
                 },
                 {
-                    "dateInputByUser" : "2020-02-01T12:34:56-06:00"
+                    "dateInputByUser" : "2020-02-01T12:34:56+00:00"
                 }
             ],
             "outArguments": [{
