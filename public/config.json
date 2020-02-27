@@ -3,8 +3,7 @@
     "metaData":
     {
         "category": "message",
-        "isConfigured": true,
-        "shapeOverride" : "dot"
+        "isConfigured": true
     },
     "type": "REST",
     "lang":
