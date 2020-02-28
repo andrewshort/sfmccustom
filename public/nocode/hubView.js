@@ -11,7 +11,7 @@ window.nocode.hubView = function( domId, contactModelSchema, inArgsSchema, inArg
         Object.keys(inArgsSchema).forEach(function(key,index) {
             
             
-            var schemaObject = inArg[key];
+            var schemaObject = inArgsSchema[key];
             var dataType = schemaObject.dataType || "Text";
             var isNullable = schemaObject.isNullable || true;
             // var direction = schemaObject.direction || "in";
