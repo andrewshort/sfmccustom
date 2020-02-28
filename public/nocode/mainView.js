@@ -13,7 +13,7 @@ window.nocode.mainView = function( domId, contactSchema, inArgsSchema, inArgsVal
             child = this.parentElement.lastElementChild; 
         }
 
-        var hubView = new window.nocode.hubView(this.domId);
+        var hubView = new window.nocode.hubView(this.domId, this.contactSchema, this.inArgsSchema, this.inArgsValues);
         hubView.render();
 
         /*
