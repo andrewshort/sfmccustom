@@ -1,7 +1,7 @@
 window.nocode = window.nocode || {};
 window.nocode.hubView = function( domId, contactModelSchema, inArgsSchema, inArgsValues ) {
     this.domId = domId;
-    this.inArgs = inArgs;
+    this.inArgsSchema = inArgsSchema;
     this.inArgsValues = inArgsValues;
 
     this.parentElement = document.getElementById( domId );
