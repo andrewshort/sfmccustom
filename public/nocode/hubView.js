@@ -30,7 +30,7 @@ window.nocode.hubView = function( domId, contactModelSchema, inArgsSchema, inArg
             div.className = "row";
             div.appendChild(label);
             div.appendChild(valueSpan);
-            parentElement.appendChild(div);
+            document.getElementById(domId).appendChild(div);
         });
     }
 }
