@@ -1,8 +1,8 @@
 window.nocode = window.nocode || {};
-window.nocode.mainView = function( domId, contactSchema, inArgs ) {
+window.nocode.mainView = function( domId, contactSchema, inArgsSchema, inArgsValues ) {
 
     this.domId = domId;
-    this.inArgs = inArgs;
+    this.inArgsSchema = inArgsSchema;
     this.contactSchema = contactSchema;
     this.parentElement = document.getElementById( domId );
 
@@ -13,6 +13,10 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
             child = this.parentElement.lastElementChild; 
         }
 
+        var hubView = new window.nocode.hubView(this.domId);
+        hubView.render();
+
+        /*
         var topDiv = document.createElement('div');
         topDiv.className = "row";
 
@@ -28,10 +32,11 @@ window.nocode.mainView = function( domId, contactSchema, inArgs ) {
         topDiv.appendChild(attributeSelect);
 
         document.getElementById(domId).appendChild(topDiv);
-
-        var attributeList = new window.nocode.attributeList('attributeList', this.inArgs);
+        
+        var attributeList = new window.nocode.attributeList('attributeList', this.inArgsSchema);
         var attributeSelector = new window.nocode.attributeSelect('attributeSelector', this.contactSchema);
         attributeList.render();
         attributeSelector.render();
+        */
     }
 }

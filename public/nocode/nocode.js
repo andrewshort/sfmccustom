@@ -48,7 +48,7 @@ define([
             return false;
         });
         
-        var mainView = new window.nocode.mainView('nocode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments);
+        var mainView = new window.nocode.mainView('nocode', data.schemaReponse.schema, payload.schema.arguments.execute.inArguments, payload.arguments.execute.inArguments);
         mainView.render();
     }
 
