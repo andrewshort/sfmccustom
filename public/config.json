@@ -29,8 +29,11 @@
                     "dateInputByUser" : "2020-02-01T12:34:56+00:00"
                 }
             ],
-            "outArguments": [{
-                "timestamp" : "",
+            "outArguments": [
+            {
+                "timestamp" : ""
+            },
+            {
                 "myOutArg" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
