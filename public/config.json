@@ -81,7 +81,7 @@
                 {
                     "returnStatusCode":
                     {
-                        "dataType": "Text",
+                        "dataType": "anyType",
                         "isNullable": false,
                         "direction": "in"
                     }
@@ -89,7 +89,7 @@
                 {
                     "delay":
                     {
-                        "dataType": "Number",
+                        "dataType": "anyType",
                         "isNullable": false,
                         "direction": "in"
                     }
