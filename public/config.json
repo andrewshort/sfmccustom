@@ -31,9 +31,6 @@
             ],
             "outArguments": [
             {
-                "timestamp" : ""
-            },
-            {
                 "myOutArg" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
@@ -106,24 +103,6 @@
                         }
                 }],
                 "outArguments": [
-                    {
-                        "sampleOutputDate" :
-                        {
-                            "dataType": "Date",
-                            "isNullable": false,
-                            "direction": "Out",
-                            "access": "Visible"
-                        }
-                    },
-                    {
-                        "contactCalls" :
-                        {
-                            "dataType": "Number",
-                            "isNullable": false,
-                            "direction": "Out",
-                            "access": "Visible"
-                        }
-                    },
                     {
                         "myOutArg" :
                         {
