@@ -30,7 +30,8 @@
                 }
             ],
             "outArguments": [{
-                "timestamp" : ""
+                "timestamp" : "",
+                "myOutArg" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
             "useJwt": false
@@ -109,19 +110,21 @@
                             "isNullable": false,
                             "direction": "Out",
                             "access": "Visible"
-                        },
-                        "dateReturnedAsNull" :
-                        {
-                            "dataType": "Date",
-                            "isNullable": false,
-                            "direction": "Out",
-                            "access": "Visible"
                         }
                     },
                     {
                         "contactCalls" :
                         {
                             "dataType": "Number",
+                            "isNullable": false,
+                            "direction": "Out",
+                            "access": "Visible"
+                        }
+                    },
+                    {
+                        "myOutArg" :
+                        {
+                            "dataType": "anyType",
                             "isNullable": false,
                             "direction": "Out",
                             "access": "Visible"

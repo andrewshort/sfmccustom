@@ -212,6 +212,7 @@ router.post('/post', function(req, res) {
 	respondWith.xforwardedfor = req.headers["x-forwarded-for"];
 	respondWith.jwtEncoded = req.body.jwtEncoded;
 	respondWith.dateReturnedAsNull = new Date(0).toISOString();
+	respondWith.myOutArg = "MyValueFrommyOutArgWithAnyType";
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';
