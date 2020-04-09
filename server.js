@@ -25,7 +25,8 @@ router.use(function(req, res, next) {
 		req.rawBody = data;
 
 		if (data) {
-			
+			console.log("raw data====");
+			console.log(data);
 			try {
 				req.body = JSON.parse(data);
 				req.body.jwtEncoded = false;
