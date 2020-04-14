@@ -214,6 +214,7 @@ router.post('/post', function(req, res) {
 	respondWith.jwtEncoded = req.body.jwtEncoded;
 	respondWith.dateReturnedAsNull = new Date(0).toISOString();
 	respondWith.myOutArg = "MyValueFrommyOutArgWithAnyType";
+	respondWith.randomNumber = Math.floor(Math.random(0,10) * 10) + 1;
 
 	if (cacheKey && cacheKey.endsWith('0')) {
 		respondWith.branchResult = 'branchResult-2';

@@ -32,6 +32,9 @@
             "outArguments": [
             {
                 "myOutArg" : ""
+            },
+            {
+                "randomNumber" : ""
             }],
             "url": "https://sfmccustom.herokuapp.com/api/post?action=execute",
             "useJwt": false
@@ -107,6 +110,15 @@
                         "myOutArg" :
                         {
                             "dataType": "anyType",
+                            "isNullable": false,
+                            "direction": "Out",
+                            "access": "Visible"
+                        }
+                    },
+                    {
+                        "randomNumber" :
+                        {
+                            "dataType": "Number",
                             "isNullable": false,
                             "direction": "Out",
                             "access": "Visible"
